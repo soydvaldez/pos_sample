@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+section {
+    width: 100%;
+}
+
+.container_products-table {
+    width: 70%;
+    min-width: 550px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    height: 550px;
+    overflow: scroll;
+}
+
+
+.options {
+    display: grid;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+/* Botones para edicion de productos */
+.options button {
+    color: white;
+    font-size: 1.6rem;
+    font-family: 'Courier New', Courier, monospace;
+    width: 20%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #04AA6D;
+    padding: 10px;
+}
+
+.options button:hover {
+    opacity: 0.8;
+}
+
+/* Tiene mayor jerarquia tiene dos clases, entonces se sobrescribe las reglas css*/
+.options .btn-save {
+    /* background-color: azure; */
+}
+
+.paginator {
+    width: 100%;
+}
+
+.paginator button {
+    width: 20%;
+    border: 1px solid #ccc;
+    border: 2px;
+    padding: 10px;
+    margin: 10px 0 0 10px;
+}
+
+table {
+    width: 95%;
+    min-width: 450px;
+    margin: 15px auto;
+    font-size: 1.6rem;
+    border-radius: 5px;
+}
+
+thead {
+    text-align: justify;
+}
+
+tbody {
+    text-align: justify;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+td,
+th {
+    border: 1px solid #ccc;
+    padding: 18px;
+}
