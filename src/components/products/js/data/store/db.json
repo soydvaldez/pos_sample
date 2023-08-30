@@ -1,0 +1,198 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "nombre": "Laptop Alien Ware",
+            "descripcion": "",
+            "precio": 300,
+            "divisa": "$USD",
+            "stock": 20
+        },
+        {
+            "id": 2,
+            "nombre": "Mouse Razer",
+            "descripcion": "",
+            "precio": 50,
+            "divisa": "$USD",
+            "stock": 5
+        },
+        {
+            "id": 3,
+            "nombre": "Monitor de 20''",
+            "descripcion": "",
+            "precio": 500,
+            "divisa": "$USD",
+            "stock": 3
+        },
+        {
+            "id": 4,
+            "nombre": "Silla Gamer",
+            "descripcion": "",
+            "precio": 200,
+            "divisa": "$USD",
+            "stock": 5
+        },
+        {
+            "id": 5,
+            "nombre": "Teclado",
+            "descripcion": "",
+            "precio": 150,
+            "divisa": "$USD",
+            "stock": 10
+        },
+        {
+            "id": 6,
+            "nombre": "Monitor de 20''",
+            "descripcion": "",
+            "precio": 500,
+            "divisa": "$USD",
+            "stock": 3
+        },
+        {
+            "id": 7,
+            "nombre": "Silla Gamer",
+            "descripcion": "",
+            "precio": 200,
+            "divisa": "$USD",
+            "stock": 5
+        },
+        {
+            "id": 8,
+            "nombre": "Teclado",
+            "descripcion": "",
+            "precio": 150,
+            "divisa": "$USD",
+            "stock": 10
+        },
+        {
+            "id": 9,
+            "nombre": "Monitor de 20''",
+            "descripcion": "",
+            "precio": 500,
+            "divisa": "$USD",
+            "stock": 3
+        },
+        {
+            "id": 10,
+            "nombre": "Silla Gamer",
+            "descripcion": "",
+            "precio": 200,
+            "divisa": "$USD",
+            "stock": 5
+        },
+        {
+            "id": 11,
+            "nombre": "Teclado",
+            "descripcion": "",
+            "precio": 150,
+            "divisa": "$USD",
+            "stock": 10
+        },
+        {
+            "id": 12,
+            "nombre": "Monitor de 20''",
+            "descripcion": "",
+            "precio": 500,
+            "divisa": "$USD",
+            "stock": 3
+        },
+        {
+            "id": 13,
+            "nombre": "Silla Gamer",
+            "descripcion": "",
+            "precio": 200,
+            "divisa": "$USD",
+            "stock": 5
+        },
+        {
+            "id": 14,
+            "nombre": "Teclado",
+            "descripcion": "",
+            "precio": 150,
+            "divisa": "$USD",
+            "stock": 10
+        },
+        {
+            "id": 15,
+            "nombre": "Teclado",
+            "descripcion": "",
+            "precio": 150,
+            "divisa": "$USD",
+            "stock": 10
+        },
+        {
+            "id": 16,
+            "nombre": "Monitor de 20''",
+            "descripcion": "",
+            "precio": 500,
+            "divisa": "$USD",
+            "stock": 3
+        },
+        {
+            "id": 17,
+            "nombre": "Silla Gamer",
+            "descripcion": "",
+            "precio": 200,
+            "divisa": "$USD",
+            "stock": 5
+        },
+        {
+            "id": 18,
+            "nombre": "Teclado",
+            "descripcion": "",
+            "precio": 150,
+            "divisa": "$USD",
+            "stock": 10
+        },
+        {
+            "id": 19,
+            "nombre": "Silla Gamer",
+            "descripcion": "",
+            "precio": 200,
+            "divisa": "$USD",
+            "stock": 5
+        },
+        {
+            "id": 20,
+            "nombre": "Teclado",
+            "descripcion": "",
+            "precio": 150,
+            "divisa": "$USD",
+            "stock": 10
+        },
+        {
+            "id": 21,
+            "nombre": "Silla Gamer",
+            "descripcion": "",
+            "precio": 200,
+            "divisa": "$USD",
+            "stock": 5
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "nombre": "daniel torres",
+            "username": "x",
+            "puesto": "manager"
+        }
+    ],
+    "categorias": [
+        {
+            "tecnologia": [
+                "mouse",
+                "teclados",
+                "monitores",
+                "laptops",
+                "otro..."
+            ]
+        },
+        {
+            "Gaming": [
+                "consolas",
+                "videojuegos",
+                "controles"
+            ]
+        }
+    ]
+}
