@@ -6,7 +6,9 @@ class CustomController {
     data$ = [];
     repository = undefined;
     HEADERS = ['id', 'nombre', 'descripcion', 'precio', 'stock'];
-    paginator = {};
+    paginatorMetada = {};
+    currentPage = {};
+    chunck = undefined;
     default_render_options = {
         collectio: 'products',
         limit: 10,
@@ -72,20 +74,14 @@ class CustomController {
                 this.addListenersTable();    // Agregar listeners
                 this.addListenersTableOptions();    //Opciones: ()=>{ guardar }
                 this.TBODY.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
+
+                let currentPage = this.dispatchPage(1);
+                console.log(currentPage);
             } else {
                 // Quita el spinner
                 console.log('Dataset is empty');
             }
         });
-    }
-
-
-
-    // Esta funcion tiene la responsabilidad de renderizar la tabla de productos en el html
-    // Depende de: this.buildTable();
-    displayTable() {
-        let { items, metadata } = this.paginator
-        this.chunckArray(items, metadata);
     }
 
     // Genera trozos de un array:
@@ -102,41 +98,44 @@ class CustomController {
         let hasRemaining = false;
         let lastRemaining = 0;
 
-        function createPage(keyValues) {
-            const {
-                elements, page, init,
-                last, data, items
-            } = keyValues;
+        function createInitPage(keyValues) {
+            const { collection, totalElements, chunck, page, initElement,
+                lastElement, items } = keyValues;
 
             let pageObj = {};
-            return pageObj['page: ' + page] = {
-                elements: elements || 0,
+            pageObj['page' + page] = {
+                collection,
+                totalElements: totalElements || 0,
                 page: page || 0,
-                init: init || 0,
-                last: last || 0,
-                data: data || '',
+                elements: {
+                    firstElement: initElement || 0,
+                    lastElement: lastElement || 0,
+                },
+                chunck: chunck || '',
                 items: items || []
             }
+            return pageObj;
         }
 
         // Genera y llena paginas:
         for (let i = 0; i < pages; i++) {
             let getItems = items.slice(init, last + 1);
 
+            // Caso especial: aplica cuando hay elementos que no entraron en una pagina o no caben exactamente se agregan en otra pagina:
+            // Evalua los elementos de una pagina y determina si hay remanentes
             if (getItems.length % elementsByPage != 0) {
                 hasRemaining = true;
                 lastRemaining = init + getItems.length;
             }
-
-            let page = createPage({
-                elements: getItems.length,
+            let page = createInitPage({
+                collection,
+                totalElements: getItems.length,
                 page: i + 1,
-                init: init + 1,
-                last: (hasRemaining) ? lastRemaining : last + 1,
-                data: (hasRemaining) ? `[${init + 1}-${lastRemaining}]` : `[${init + 1}-${last + 1}]`,
+                initElement: init + 1,
+                lastElement: (hasRemaining) ? lastRemaining : last + 1,
+                chunck: (hasRemaining) ? `[${init + 1}-${lastRemaining}]` : `[${init + 1}-${last + 1}]`,
                 items: getItems
             });
-
             hasRemaining = false;
             chunks.push(page);
             init = last + 1;
@@ -153,6 +152,15 @@ class CustomController {
 
         //Necesitas tener la metadata y la informacion de referencia del elemento
         //Que elemento es?
+        this.chunck = chunks;
+    }
+
+    dispatchPage(noPage) {
+        for (let chunck of this.chunck.values()) {
+            if (chunck[`page${noPage}`]) {
+                return chunck;
+            }
+        }
     }
 
     // Vamos a hacer un iterator
@@ -237,6 +245,7 @@ class CustomController {
         this.TBODY.innerHTML = `<tr><td colspan="5" style="text-align: center;">NO AVAILABLE DATA</td></tr>`;
     }
 
+    // Esta funcion esta por fuera de la tabla: y puede manipular o controlar el comportamiento o los elementos de la tabla.
     addListenersTableOptions() {
         let btn_save = this.optionsBtn.querySelector('.btn-save');
         btn_save.addEventListener('renderData', (e) => {
@@ -246,6 +255,7 @@ class CustomController {
         btn_save.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
         // 'empty table'
     }
+
     // Sincronizar es que los datos que tengas en memoria esten holomogados con los del repositorio mandatorio (Estado actual del negocio).
     // Debe de haber un historial de cambios en las filas: y se debe de acceder por una busqueda para recuparar el snapshot
     /* 
@@ -336,25 +346,9 @@ class CustomController {
         });
     }
 
-    clearTable() {
-        // let it = this.TBODY.childNodes.values();
-        // console.log(it.next());
-
-        // do {
-        // it.next();
-        // } while (!it.next().done);
-
-        for (let node of this.TBODY.children) {
-            console.log(node);
-        }
-
-        // setTimeout(() => {
-        //     this.showEmptyDataMessage();
-        // }, 5000);
-    }
-
     // Podria recibir un trozo de colecion de productos y en base a eso contruir la logica y estructura:
     // Este metodo construye la estructura html junto con los datos de productos.
+    // Este metodo tiene una dependencia debil al metodo  addListenersTable()
     buildTable(chunckData) {
         // Pregunta si la tabla tiene hijos, si no tiene hijos saltate la condicion
         // cargar spinner:
@@ -397,6 +391,30 @@ class CustomController {
         // Renderizar filas
         this.TBODY.innerHTML += rowsProducts;
         return;
+    }
+
+    // Esta funcion tiene la responsabilidad de renderizar la tabla de productos en el html
+    // Depende de: this.buildTable();
+    displayTable() {
+        let { items, metadata } = this.paginator
+        this.chunckArray(items, metadata);
+    }
+
+    clearTable() {
+        // let it = this.TBODY.childNodes.values();
+        // console.log(it.next());
+
+        // do {
+        // it.next();
+        // } while (!it.next().done);
+
+        for (let node of this.TBODY.children) {
+            console.log(node);
+        }
+
+        // setTimeout(() => {
+        //     this.showEmptyDataMessage();
+        // }, 5000);
     }
 }
 
