@@ -1,4 +1,4 @@
-import { ProductRepository } from './data/product.repository.js';
+import { ProductRepository } from '../data/product.repository.js';
 // Antes de renderizar los objetos de la tabla crea una copia en memoria para tener consistencia del estado
 // de los datos antes de ser manipulados por el usuario
 
@@ -12,7 +12,7 @@ class CustomController {
         limit: 10,
         order: 'asc'
     }
-
+    chunksdata = [];
     createHeaders = "";
     // Edicion
     // Fila original
@@ -59,9 +59,12 @@ class CustomController {
             this.data$ = products;
 
             if (this.data$) {
-                this.settingsPaginator();
+                this.generatorPaginatorMetadata();
                 // Quita el spinner
                 this.buildTable();           // Renderiza la tabla
+                this.buildTable([]);
+
+                // Renderiza la tabla
                 this.displayTable();
                 this.addListenersTable();    // Agregar listeners
                 this.addListenersTableOptions();    //Opciones: ()=>{ guardar }
@@ -73,7 +76,7 @@ class CustomController {
         });
     }
 
-    // Esta funcion tiene la responsabilidad de mostrar en pantalla y en elementos html los datos
+    // Esta funcion tiene la responsabilidad de renderizar la tabla de productos en el html
     // Depende de: this.buildTable();
     displayTable() {
         let { items, metadata } = this.paginator
@@ -81,29 +84,66 @@ class CustomController {
     }
 
     // Genera trozos de un array:
+    // Mostrando pedazo (chunck) elementos del: page1: [1 - 10], page1:[11-20], page3:[21 -30]....
+    // display: page 1 || display: last_page
     chunckArray(items, metadata) {
-        // Mostrando pedazo (chunck) elementos del: page1: [1 - 10], page1:[11-20], page3:[21 -30]....
-        // display: page 1 || display: last_page
+        let { collection, pages, elementsByPage, resto, totalElements, orderBy } = metadata;
 
-        let fragment = { page1: [1, 2, 3, 4], page1: [5, 6, 7, 8], page1: [9, 10] };
+        let init = 0;
+        let last = elementsByPage - 1;
+        let chunks = [];
 
-        const PAGES = metadata.pages;
 
-        // for (let chunk of PAGES) {
-        console.log({ PAGES });
-        // }
+        let hasRemaining = false;
+        let lastRemaining = 0;
 
-        // let init = last_element +1;
-        // let init = last_element +1
-        // let init = items[];
-        console.log(items.splice(0, 9));
-        console.log(metadata);
+        function createPage(keyValues) {
+            const {
+                elements, page, init,
+                last, data, items
+            } = keyValues;
 
+            let pageObj = {};
+            return pageObj['page: ' + page] = {
+                elements: elements || 0,
+                page: page || 0,
+                init: init || 0,
+                last: last || 0,
+                data: data || '',
+                items: items || []
+            }
+        }
+
+        // Genera y llena paginas:
+        for (let i = 0; i < pages; i++) {
+            let getItems = items.slice(init, last + 1);
+
+            if (getItems.length % elementsByPage != 0) {
+                hasRemaining = true;
+                lastRemaining = init + getItems.length;
+            }
+
+            let page = createPage({
+                elements: getItems.length,
+                page: i + 1,
+                init: init + 1,
+                last: (hasRemaining) ? lastRemaining : last + 1,
+                data: (hasRemaining) ? `[${init + 1}-${lastRemaining}]` : `[${init + 1}-${last + 1}]`,
+                items: getItems
+            });
+
+            hasRemaining = false;
+            chunks.push(page);
+            init = last + 1;
+            last += elementsByPage;
+        }
+        this.chunksdata = chunks.map(c => c);
         let it = this.generateIterator([{ obj: 1 }, { obj: 2 }, { obj: 3 }, { obj: 4 }, { obj: 5 }]);
         let aux = undefined;
+
         do {
             aux = it.next();
-            console.log(aux.value);
+            // console.log(aux.value);
         } while (aux.hasNext || aux.value != undefined);
 
         //Necesitas tener la metadata y la informacion de referencia del elemento
@@ -126,7 +166,8 @@ class CustomController {
         };
     }
 
-    settingsPaginator() {
+    // Generate metadata for split data in pages
+    generatorPaginatorMetadata() {
         let settings = { limit: 10, orderBy: 'asc' };
         let override_render_options = {};
 
@@ -141,18 +182,26 @@ class CustomController {
         let pages = parseInt(this.data$.length / limit);
         let elementsByPage = limit;
         let totalElementsPages = pages * limit;
-        let resto = 0;
+        let resto = {};
 
         // Hay resto?
         if ((totalElements % limit) > 0) {
-            console.log('Hay elementos restantes');
-            // Cuantos? //Aplica una diferencia
-            // Agrega una tercera pagina con el resto
-            resto = totalElements - totalElementsPages;
+            resto['hasRemaining'] = true;
+            resto['remainingElements'] = totalElements - totalElementsPages;
             pages++;
+        } else {
+            resto['hasRemaining'] = false;
+            resto['remainingElements'] = [];
         }
 
-        let metadata = { collection: override_render_options.collection, pages, resto, totalElements, elementsByPage, orderBy };
+        let metadata = {
+            collection: override_render_options.collection,
+            pages,
+            resto,
+            totalElements,
+            elementsByPage, orderBy
+        };
+
         this.paginator = {
             items: this.data$.map(m => m),
             metadata: metadata
@@ -166,7 +215,7 @@ class CustomController {
     }
 
     displaySpinner() {
-        console.log('Feature not supported yet');
+        // console.log('Feature not supported yet');
     }
 
     addListenersTableOptions() {
@@ -268,8 +317,20 @@ class CustomController {
         });
     }
 
-    // Esperar a que renderice la tabla
-    buildTable() {
+    // Podria recibir un trozo de colecion de productos y en base a eso contruir la logica y estructura:
+    // Este metodo construye la estructura html junto con los datos de productos.
+    buildTable(chunckData) {
+        // Pregunta si la tabla tiene hijos, si no tiene hijos saltate la condicion
+        // cargar spinner:
+        this.TBODY.innerHTML += "";
+
+        function clearTable() {
+
+        }
+
+        // Yiene datos la tabla
+
+        // console.log(chunckData);
         let rowsProducts = "";
 
         function createHeaders() {
@@ -293,7 +354,9 @@ class CustomController {
         // Renderiza 10 (test) Aqui va a ir el archivo de opeciones de renderizado:
         let targetItems = this.data$.slice(0, 4);
 
-        for (let product of targetItems) {
+        let dataIterable = chunckData && chunckData != undefined ? chunckData : targetItems;
+
+        for (let product of dataIterable) {
             rowsProducts += `<tr item=${product.id}>${createRows(product)}</tr>`
         }
 
