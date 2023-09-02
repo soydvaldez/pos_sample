@@ -57,12 +57,15 @@ class CustomController {
             // Copia del estado de la base de datos:
             // Cargando...
             this.data$ = products;
+            setTimeout(() => {
+                this.removeSpinner();
+            }, 10000);
 
             if (this.data$) {
                 this.generatorPaginatorMetadata();
                 // Quita el spinner
                 this.buildTable();           // Renderiza la tabla
-                this.buildTable([]);
+                // this.buildTable([]);
 
                 // Renderiza la tabla
                 this.displayTable();
@@ -71,10 +74,12 @@ class CustomController {
                 this.TBODY.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
             } else {
                 // Quita el spinner
-                console.log('Data set is empty');
+                console.log('Dataset is empty');
             }
         });
     }
+
+
 
     // Esta funcion tiene la responsabilidad de renderizar la tabla de productos en el html
     // Depende de: this.buildTable();
@@ -215,7 +220,21 @@ class CustomController {
     }
 
     displaySpinner() {
-        // console.log('Feature not supported yet');
+        this.TBODY.innerHTML = `<tr><td class="spinner" colspan="5" style="text-align: center;"><div class="loader"></td></tr>`;
+    }
+
+    removeSpinner() {
+
+        let spinner = this.TBODY.querySelector('.spinner');
+        let sp = this.TBODY.querySelector('.loader');
+
+        console.log(spinner);
+        console.log(sp);
+        spinner.removeChild(sp);
+    }
+
+    showEmptyDataMessage() {
+        this.TBODY.innerHTML = `<tr><td colspan="5" style="text-align: center;">NO AVAILABLE DATA</td></tr>`;
     }
 
     addListenersTableOptions() {
@@ -317,18 +336,33 @@ class CustomController {
         });
     }
 
+    clearTable() {
+        // let it = this.TBODY.childNodes.values();
+        // console.log(it.next());
+
+        // do {
+        // it.next();
+        // } while (!it.next().done);
+
+        for (let node of this.TBODY.children) {
+            console.log(node);
+        }
+
+        // setTimeout(() => {
+        //     this.showEmptyDataMessage();
+        // }, 5000);
+    }
+
     // Podria recibir un trozo de colecion de productos y en base a eso contruir la logica y estructura:
     // Este metodo construye la estructura html junto con los datos de productos.
     buildTable(chunckData) {
         // Pregunta si la tabla tiene hijos, si no tiene hijos saltate la condicion
         // cargar spinner:
-        this.TBODY.innerHTML += "";
 
-        function clearTable() {
-
+        // Tiene datos la tabla
+        if (this.TBODY.hasChildNodes) {
+            this.clearTable();
         }
-
-        // Yiene datos la tabla
 
         // console.log(chunckData);
         let rowsProducts = "";
@@ -352,7 +386,7 @@ class CustomController {
 
         // Crea todas las filas de productos
         // Renderiza 10 (test) Aqui va a ir el archivo de opeciones de renderizado:
-        let targetItems = this.data$.slice(0, 4);
+        let targetItems = this.data$.slice(0, 10);
 
         let dataIterable = chunckData && chunckData != undefined ? chunckData : targetItems;
 

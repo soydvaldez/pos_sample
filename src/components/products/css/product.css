@@ -13,15 +13,6 @@ section {
     width: 100%;
 }
 
-.container_products-table {
-    width: 70%;
-    min-width: 550px;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    height: 680px;
-    overflow: scroll;
-}
-
 .options-container {
     display: grid;
     width: 100%;
@@ -49,6 +40,7 @@ section {
 
 .options-container button:disabled {
     opacity: .5;
+    cursor: not-allowed;
 }
 
 /* Tiene mayor jerarquia tiene dos clases, entonces se sobrescribe las reglas css*/
@@ -68,12 +60,23 @@ section {
     margin: 10px 0 0 10px;
 }
 
+.container_products-table {
+    width: 70%;
+    min-width: 550px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    height: 680px;
+    overflow: scroll;
+}
+
 table {
     width: 95%;
     min-width: 450px;
+    min-height: 350px;
     margin: 15px auto;
     font-size: 1.6rem;
     border-radius: 5px;
+    height: 640px;
 }
 
 thead {
@@ -109,7 +112,7 @@ th {
     z-index: 1;
     font-size: 1.6rem;
     bottom: 10%;
-    transition:  5s;
+    transition: 5s;
 }
 
 .notification-close {
