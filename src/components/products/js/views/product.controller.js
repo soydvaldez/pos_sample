@@ -76,7 +76,8 @@ class CustomController {
                 this.TBODY.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
 
                 let currentPage = this.dispatchPage(1);
-                console.log(currentPage);
+
+                this.renderPage();
             } else {
                 // Quita el spinner
                 console.log('Dataset is empty');
@@ -156,11 +157,15 @@ class CustomController {
     }
 
     dispatchPage(noPage) {
+        let findedPage = undefined;
         for (let chunck of this.chunck.values()) {
             if (chunck[`page${noPage}`]) {
-                return chunck;
+                findedPage = chunck[`page${noPage}`];
+                break;
             }
         }
+        // added logic here:
+        return findedPage;
     }
 
     // Vamos a hacer un iterator
@@ -249,7 +254,7 @@ class CustomController {
     addListenersTableOptions() {
         let btn_save = this.optionsBtn.querySelector('.btn-save');
         btn_save.addEventListener('renderData', (e) => {
-            console.log('DataTable renderizado');
+            // console.log('DataTable renderizado');
         });
 
         btn_save.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
@@ -388,7 +393,7 @@ class CustomController {
             rowsProducts += `<tr item=${product.id}>${createRows(product)}</tr>`
         }
 
-        // Renderizar filas
+        // Renderizar filas: Esta responsabilidad tiene que ir encapsulada en otra funcion:
         this.TBODY.innerHTML += rowsProducts;
         return;
     }
@@ -409,12 +414,58 @@ class CustomController {
         // } while (!it.next().done);
 
         for (let node of this.TBODY.children) {
-            console.log(node);
+            // console.log(node);
         }
 
         // setTimeout(() => {
         //     this.showEmptyDataMessage();
         // }, 5000);
+    }
+
+    // Genera una estructura HTML
+    buildPage(pageToRender) {
+        let rowsProducts = undefined;
+        const { items } = pageToRender;
+        let createRows = (items) => {
+            let row = "";
+            // for (let key of Object.keys(product)) {
+            for (let key of this.HEADERS) {
+                if (key === "id") {
+                    row += `<td contenteditable="false" name="${key}">${items[key]}</td>`;
+                } else {
+                    row += `<td contenteditable="true" name="${key}">${items[key]}</td>`;
+                }
+            }
+            return row;
+        }
+
+        // Crea todas las filas de productos
+        // Renderiza 10 (test) Aqui va a ir el archivo de opeciones de renderizado:
+        let targetItems = items;
+        let dataIterable = targetItems;
+
+        for (let product of dataIterable) {
+            rowsProducts += `<tr item=${product.id}>${createRows(product)}</tr>`
+        }
+
+        this.TBODY.innerHTML = rowsProducts;
+    }
+
+    //Renderiza la pagina en una tabla
+    renderPage() {
+        console.log('proceso: renderizado de pagina');
+        console.log('step1: empezando la renderizacion de pagina.');
+
+        let pageToRender = this.dispatchPage(2);
+        this.buildPage(pageToRender);
+        // this.addBehaviorPage();
+
+        // prepara estructura
+        // Agrega escuchas
+        // confirma que salio todo con exitos
+        // exito ? elimina los escuchas de la pagina a eliminar y elimina la tabla renderizada actualmente
+        // renderiza la estructura logica previamente preparada
+
     }
 }
 
