@@ -19,17 +19,6 @@ class Paginator {
     };
 
     pagesList = new Array();
-    Page = {
-        collection: this.collection,
-        totalElements: 0,
-        page: 0,
-        elements: {
-            firstElement: 0,
-            lastElement: 0,
-        },
-        chunck: '',
-        items: []
-    };
     totalPages = 0;
 
     // buildPages depende de generateMetadata
@@ -40,11 +29,15 @@ class Paginator {
         if (settings) {
             this.Settings = settings || this.Settings;
         }
-
+        // Datos generales de la coleccion:
         this.data = items;
         this.collection = collection;
-        //Inicia la construccion de la metadata
         this.totalElements = this.data.length;
+        // Dispara la ejeccion del proceso principal:
+        this.run();
+    }
+
+    run() {
         this.generateMetadata();
         this.buildPages();
     }
@@ -103,7 +96,7 @@ class Paginator {
             last_item: data.lastItem,
             chunck: data.chunck,
             total_items_chunck: data.totalItemsChunck,
-            curren_page: data.currentPage,
+            current_page: data.currentPage,
             number_page: data.numberPage,
             chunks_items: chunks_items
         };
@@ -151,6 +144,8 @@ class Paginator {
             // Agregar pagina:
             this.pagesList.push(obj);
         }
+
+        // Puedes agregar un formateador para la salida del proceso
     }
 
     dispatchPage(number_page) {
@@ -158,10 +153,27 @@ class Paginator {
         return this.pagesList[index];
     }
 
+    // Vamos a hacer un iterator
+    generateIterator() {
+        var index = 0;
+        let pages = structuredClone(this.pagesList);
+        return {
+            next: () => {
+                return (index < pages.length) ?
+                    {
+                        value: pages[index++], hasNext: true
+                    } : {
+                        value: pages[index++], hasNext: false
+                    }
+            }
+        };
+    }
+
     getPages() {
         return this.pagesList;
     }
 
+    // Funciones para exponer: serviran para controlar la iteracion de las paginas
     getTotalPages() {
         return this.totalPages;
     }
@@ -172,10 +184,19 @@ let products = database.products.splice(0, 21);
 let paginator
     = new Paginator(
         { collection: "products", items: products },
-        { limit: 20, orderBy: 'asc' }
+        { limit: 5, orderBy: 'asc' }
     );
-let page = paginator.dispatchPage(1);
-console.log({ ...page });
-console.log(paginator.getTotalPages());
+let page = paginator.dispatchPage(4);
+let iterator = paginator.generateIterator();
+let aux = undefined;
+
+do {
+    console.log({ ...aux });
+    aux = iterator.next();
+} while (aux.hasNext);
+
+// handlerPage:
+//target:
+// next(): ()=>{ } : Me devolvera la siguiente pagina
 
 module.exports = { Paginator };
