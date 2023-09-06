@@ -6,42 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/product.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="module" src="./js/views/product.controller.js" defer></script>
-    <style>
-        .loader {
-            margin: 0 auto;
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid #ccc;
-            width: 120px;
-            height: 120px;
-            -webkit-animation: spin 2s linear infinite;
-            /* Safari */
-            animation: spin 2s linear infinite;
-        }
-
-        /* Safari */
-        @-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-            }
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
-
+    <script type="module" src="./js/views/paginator.controller.js" defer></script>
 </head>
 
 <body>
@@ -49,9 +18,9 @@
     <section>
         <!-- Notificacion de guardado -->
         <!-- position: sticky top: 20px -->
-        <div class="notification">
+        <!-- <div class="notification">
             <span>Se ha guardado el elemento</span>
-        </div>
+        </div> -->
         <div class="options-container">
             <button class="btn-save" disabled>Guardar</button>
         </div>
@@ -70,10 +39,23 @@
             </table>
         </div>
         <div class="paginator">
-            <button class="btn-foot">Paginar</button>
+            <div class="wrapper-paginator">
+                <button class="paginator_btn__nextpage glyphicon glyphicon-step-backward" action="step-backward">
+                </button>
+                <button class="paginator_btn__nextpage glyphicon glyphicon-backward" action="backward">
+                </button>
+                <button class="paginator_btn__page glyphicon" action="page1">1</button>
+                <button class="paginator_btn__page glyphicon" action="page2">2</button>
+                <button class="paginator_btn__page glyphicon" action="page3">3</button>
+                <button class="paginator_btn__page glyphicon" action="page4">4</button>
+                <button class="paginator_btn__backpage glyphicon glyphicon-forward" action="forward">
+                    <span class=""></span>
+                </button>
+                <button class="paginator_btn__backpage glyphicon glyphicon-step-forward" action="step-forward">
+                </button>
+            </div>
         </div>
     </section>
-
 </body>
 
 </html>
