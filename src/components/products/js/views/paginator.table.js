@@ -1,5 +1,4 @@
 'use strict'
-const database = require('../data/store/db.json');
 
 // Otra regla: Si el numero de total de items dividido entre el limit es menor a 1 entonces
 // solo abra una pagina en la coleccion
@@ -26,9 +25,13 @@ class Paginator {
     // Entrada: data[] salida el array data dividido en paginas
     constructor(data, settings) {
         const { collection, items } = data;
+    
         if (settings) {
-            this.Settings = settings || this.Settings;
+            // this.Settings = settings || this.Settings;
+            this.Settings = this.Settings;
         }
+
+        
         // Datos generales de la coleccion:
         this.data = items;
         this.collection = collection;
@@ -96,8 +99,8 @@ class Paginator {
             last_item: data.lastItem,
             chunck: data.chunck,
             total_items_chunck: data.totalItemsChunck,
-            current_page: data.currentPage,
-            number_page: data.numberPage,
+            page: data.currentPage,
+            page_number: data.numberPage,
             chunks_items: chunks_items
         };
         return Page;
@@ -178,25 +181,27 @@ class Paginator {
         return this.totalPages;
     }
 }
+function test() {
+    // const database = require('../data/store/db.json');
+    //Leemos desde el api o desde el local_storage:
+    let products = database.products.splice(0, 21);
+    let paginator
+        = new Paginator(
+            { collection: "products", items: products },
+            { limit: 5, orderBy: 'asc' }
+        );
+    let page = paginator.dispatchPage(4);
+    let iterator = paginator.generateIterator();
+    let aux = undefined;
 
-//Leemos desde el api o desde el local_storage:
-let products = database.products.splice(0, 21);
-let paginator
-    = new Paginator(
-        { collection: "products", items: products },
-        { limit: 5, orderBy: 'asc' }
-    );
-let page = paginator.dispatchPage(4);
-let iterator = paginator.generateIterator();
-let aux = undefined;
+    do {
+        console.log({ ...aux });
+        aux = iterator.next();
+    } while (aux.hasNext);
 
-do {
-    console.log({ ...aux });
-    aux = iterator.next();
-} while (aux.hasNext);
-
-// handlerPage:
-//target:
-// next(): ()=>{ } : Me devolvera la siguiente pagina
-
-module.exports = { Paginator };
+    // handlerPage:
+    //target:
+    // next(): ()=>{ } : Me devolvera la siguiente pagina
+}
+// module.exports = { Paginator };
+export { Paginator };

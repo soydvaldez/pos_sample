@@ -29,13 +29,23 @@ class CustomController {
     constructor(repository) {
         this.repository = repository;
         this.optionsBtn = document.querySelector('.options-container');
+
         this.TABLE = document.querySelector('table');
         this.THEAD = this.TABLE.querySelector('thead');     //Para escuchar los ordenamientos
         this.TBODY = this.TABLE.querySelector('tbody');
 
-        this.TBODY.addEventListener('renderData', (e) => {
-            // console.log('propagacion 1');
+        this.TABLE.addEventListener('click', (e) => {
+            console.log('propagacion 1');
+            e.target.dispatchEvent(new CustomEvent('render', { bubbles: true }));
         });
+
+        document.addEventListener('render', (e) => {
+            console.log('Termino de cargar la data asyncrona, procesando...');
+        });
+
+        this.TBODY.dispatchEvent(new CustomEvent('loadedAsyncData', { bubbles: true }));
+        // this.TBODY.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
+        // this.TABLE.dispatchEvent(new CustomEvent('click', { bubbles: true }));
 
         //Escucha eventos en toda la tabla:
         // Me subscribo al evento: 'renderData'
@@ -51,17 +61,20 @@ class CustomController {
 
         // Funcion asincrona:
         this.loadAsyncProducts();
+
+        // on
+        // emmit
     }
 
     loadAsyncProducts() {
         this.repository.listar((products) => {
-            this.displaySpinner();
+            // this.displaySpinner();
             // Copia del estado de la base de datos:
             // Cargando...
             this.data$ = products;
-            setTimeout(() => {
-                this.removeSpinner();
-            }, 10000);
+            // setTimeout(() => {
+            //     this.removeSpinner();
+            // }, 10000);
 
             if (this.data$) {
                 this.generatorPaginatorMetadata();
@@ -74,15 +87,13 @@ class CustomController {
                 this.addListenersTable();    // Agregar listeners
                 this.addListenersTableOptions();    //Opciones: ()=>{ guardar }
                 this.TBODY.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
-
-                let currentPage = this.dispatchPage(1);
-
-                this.renderPage();
             } else {
                 // Quita el spinner
                 console.log('Dataset is empty');
             }
         });
+
+
     }
 
     // Genera trozos de un array:
@@ -303,7 +314,7 @@ class CustomController {
                 return;
             }
             // agrega elemento a la pila
-            return;
+            // return;
         });
 
         // Extrae los datos de las celdas de una fila y lo convierte en un objeto
