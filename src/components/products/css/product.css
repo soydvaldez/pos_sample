@@ -48,18 +48,6 @@ section {
     /* background-color: azure; */
 }
 
-.paginator {
-    width: 100%;
-}
-
-.paginator button {
-    width: 20%;
-    border: 1px solid #ccc;
-    border: 2px;
-    padding: 10px;
-    margin: 10px 0 0 10px;
-}
-
 .container_products-table {
     width: 70%;
     min-width: 550px;
@@ -100,6 +88,46 @@ table td {
     height: 50px;
 }
 
+.paginator {
+    width: 100%;
+}
+
+.wrapper-paginator {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+.paginator button {
+    width: 5%;
+    min-width: 50px;
+    border: 1px solid #ccc;
+    border: 2px;
+    padding: 10px;
+    margin: 10px 0 0 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: #ccc;
+}
+
+.paginator .paginator_btn__page {
+    width: auto;
+    height: auto;
+    min-width: 20px;
+    text-align: justify;
+}
+
+.paginator button:hover {
+    background-color: #04AA6D;
+    /* padding: 10.5px; */
+    cursor: pointer;
+    transition: 1s;
+    opacity: .5;
+}
+
+.paginator button:active {
+    background-color: #ccc;
+}
 
 /* Notificaciones */
 .notification {
