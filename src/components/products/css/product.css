@@ -17,7 +17,6 @@ section {
     display: grid;
     width: 100%;
     border: 1px solid #ccc;
-
 }
 
 /* Variables: opciones de edicion: tabla */
@@ -101,24 +100,25 @@ table td {
 .paginator button {
     width: 5%;
     min-width: 50px;
-    border: 1px solid #ccc;
+    border: 1px solid #f53232;
     border: 2px;
     padding: 10px;
     margin: 10px 0 0 10px;
     border-radius: 5px;
-    color: white;
     background-color: #ccc;
 }
 
 .paginator .paginator_btn__page {
     width: auto;
-    height: auto;
+    /* height: 10px; */
     min-width: 20px;
     text-align: justify;
+    font-size: 1.4rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .paginator button:hover {
-    background-color: #04AA6D;
+    background-color: #12c785;
     /* padding: 10.5px; */
     cursor: pointer;
     transition: 1s;
@@ -126,7 +126,7 @@ table td {
 }
 
 .paginator button:active {
-    background-color: #ccc;
+    background-color: #e7e6e6;
 }
 
 /* Notificaciones */

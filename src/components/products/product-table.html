@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/product.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="module" src="./js/views/product.controller.js" defer></script>
+    <script type="module" src="./js/views/paginator.controller.js" defer></script>
 </head>
 
 <body>
@@ -36,18 +40,22 @@
         </div>
         <div class="paginator">
             <div class="wrapper-paginator">
-                <button class="paginator_btn__nextpage"><<</button>
-                <button class="paginator_btn__nextpage"><</button>
-                <button class="paginator_btn__page">1</button>
-                <button class="paginator_btn__page">2</button>
-                <button class="paginator_btn__page">3</button>
-                <button class="paginator_btn__page">4</button>
-                <button class="paginator_btn__backpage">></button>
-                <button class="paginator_btn__backpage">>></button>
+                <button class="paginator_btn__nextpage glyphicon glyphicon-step-backward" action="step-backward">
+                </button>
+                <button class="paginator_btn__nextpage glyphicon glyphicon-backward" action="backward">
+                </button>
+                <button class="paginator_btn__page glyphicon" action="page1">1</button>
+                <button class="paginator_btn__page glyphicon" action="page2">2</button>
+                <button class="paginator_btn__page glyphicon" action="page3">3</button>
+                <button class="paginator_btn__page glyphicon" action="page4">4</button>
+                <button class="paginator_btn__backpage glyphicon glyphicon-forward" action="forward">
+                    <span class=""></span>
+                </button>
+                <button class="paginator_btn__backpage glyphicon glyphicon-step-forward" action="step-forward">
+                </button>
             </div>
         </div>
     </section>
-
 </body>
 
 </html>
