@@ -9,21 +9,30 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="module" src="./js/views/product.controller.js" defer></script>
-    <script type="module" src="./js/views/paginator.controller.js" defer></script>
+
+    <script type="module" src="./js/views/index.js" defer></script>
+    <!-- <script type="module" src="./js/views/product.controller.js" defer></script>
+    <script type="module" src="./js/views/paginator.controller.js" defer></script> -->
 </head>
 
 <body>
-    <h1>Products</h1>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Registrar</a></li>
+            </ul>
+        </nav>
+    </header>
     <section>
         <!-- Notificacion de guardado -->
         <!-- position: sticky top: 20px -->
         <!-- <div class="notification">
             <span>Se ha guardado el elemento</span>
         </div> -->
-        <div class="options-container">
+        <!-- <div class="options-container">
             <button class="btn-save" disabled>Guardar</button>
-        </div>
+        </div> -->
         <div class="container_products-table">
             <table>
                 <thead style="position: sticky; top: 0px;">
