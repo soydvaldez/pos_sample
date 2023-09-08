@@ -1,6 +1,34 @@
+"use strict";
 import { ProductRepository } from '../data/product.repository.js';
+import { PaginatorController } from './paginator.controller.js';
+
 // Antes de renderizar los objetos de la tabla crea una copia en memoria para tener consistencia del estado
 // de los datos antes de ser manipulados por el usuario
+
+
+// Voy a tener que guardar el estado de la fila tanto en estilos como en informacion
+// Por defecto:
+let originalStateRow = {
+    values: [],
+    edition: false,
+    style: {
+        background: "yellow",
+        height: "200px"
+    }
+}
+
+// Editado por el usuario:
+let editStateRow = {
+    values: [],
+    edition: true,
+    style: {
+        background: "yellow",
+        height: "200px"
+    }
+}
+
+// Esto persistelo en local storage
+
 
 class CustomController {
     data$ = [];
@@ -27,6 +55,7 @@ class CustomController {
     // items to display = limit
 
     constructor(repository) {
+
         this.repository = repository;
         this.optionsBtn = document.querySelector('.options-container');
 
@@ -34,13 +63,21 @@ class CustomController {
         this.THEAD = this.TABLE.querySelector('thead');     //Para escuchar los ordenamientos
         this.TBODY = this.TABLE.querySelector('tbody');
 
+        this.TABLE.addEventListener('render_page', (e) => {
+
+        });
+
+        this.TBODY.addEventListener('hola_mundo', (e) => {
+            alert('Evento hola mundo catched!');
+        });
+
         this.TABLE.addEventListener('click', (e) => {
-            console.log('propagacion 1');
+
             e.target.dispatchEvent(new CustomEvent('render', { bubbles: true }));
         });
 
         document.addEventListener('render', (e) => {
-            console.log('Termino de cargar la data asyncrona, procesando...');
+
         });
 
         this.TBODY.dispatchEvent(new CustomEvent('loadedAsyncData', { bubbles: true }));
@@ -51,7 +88,7 @@ class CustomController {
         // Me subscribo al evento: 'renderData'
 
         this.TABLE.addEventListener('renderData', (e) => {
-            // console.log('propagacion 2');
+
         });
 
         // Pon en un objeto un catalogo de funciones flecha:
@@ -89,11 +126,9 @@ class CustomController {
                 this.TBODY.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
             } else {
                 // Quita el spinner
-                console.log('Dataset is empty');
+
             }
         });
-
-
     }
 
     // Genera trozos de un array:
@@ -159,7 +194,7 @@ class CustomController {
 
         do {
             aux = it.next();
-            // console.log(aux.value);
+
         } while (aux.hasNext || aux.value != undefined);
 
         //Necesitas tener la metadata y la informacion de referencia del elemento
@@ -252,8 +287,8 @@ class CustomController {
         let spinner = this.TBODY.querySelector('.spinner');
         let sp = this.TBODY.querySelector('.loader');
 
-        console.log(spinner);
-        console.log(sp);
+
+
         spinner.removeChild(sp);
     }
 
@@ -263,12 +298,12 @@ class CustomController {
 
     // Esta funcion esta por fuera de la tabla: y puede manipular o controlar el comportamiento o los elementos de la tabla.
     addListenersTableOptions() {
-        let btn_save = this.optionsBtn.querySelector('.btn-save');
-        btn_save.addEventListener('renderData', (e) => {
-            // console.log('DataTable renderizado');
-        });
+        // let btn_save = this.optionsBtn.querySelector('.btn-save');
+        // btn_save.addEventListener('renderData', (e) => {
 
-        btn_save.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
+        // });
+
+        // btn_save.dispatchEvent(new CustomEvent('renderData', { bubbles: true }));
         // 'empty table'
     }
 
@@ -290,6 +325,25 @@ class CustomController {
         let originalStateRow = undefined;
         let editableElementRow = undefined;
 
+        //Extrar la fila entera seleccionada por el usuario de la tabla de productos
+        let getRowHTMLElement = (event) => {
+            return event.target.parentElement;
+        }
+
+        //Estado original: Extrae los datos de las celdas de una fila y lo convierte en un objeto
+        let extractRowData = (rowData) => {
+            let values = rowData.children;
+            console.log(values);
+            let dataRow = {};
+
+            for (let key of this.HEADERS) {
+                console.log(key);
+                dataRow[key] = values.namedItem(key).innerText;
+            }
+            return dataRow;
+        }
+        // El control de cambios se controla a traves de una pila. Pila de cambios
+
         let edicionObject = {}
 
         // Inicializa la base de datos en memoria:
@@ -297,40 +351,20 @@ class CustomController {
             isEdited: false,
         };
 
-        //Extrar la fila entera seleccionada por el usuario de la tabla de productos
-        let getRowHTMLElement = (event) => {
-            return event.target.parentElement;
-        }
-
-        this.TBODY.addEventListener('click', (e) => {
-            e.preventDefault();
-            //snapshot: Estado antes de modificar la fila:
-            originalStateRow = extractRowData(getRowHTMLElement(e));
-
-            // Si ya existe la base de datos solo agrega otro elemento a la pila (Singleton pattern)
-            if (!generalRowState['snapshot']) {
-                generalRowState['snapshot'] = originalStateRow;
-                generalRowState['changesDetected'] = edicionObject;
-                return;
-            }
-            // agrega elemento a la pila
-            // return;
-        });
-
-        // Extrae los datos de las celdas de una fila y lo convierte en un objeto
-        // Estado original:
-        let extractRowData = (rowData) => {
-            let values = rowData.children;
-            let dataRow = {};
-
-            for (let key of this.HEADERS) {
-                dataRow[key] = values.namedItem(key).innerText;
-            }
-            return dataRow;
-        }
-        // El control de cambios se controla a traves de una pila. Pila de cambios
-
         this.TBODY.addEventListener('input', (e) => {
+
+            let row = getRowHTMLElement(e);
+            let btn = row.querySelector('.actions').querySelector('.btn_table_edit');
+            btn.disabled = false;
+
+            // btn.addEventListener('click', (e) => {
+            //     // let ele = getRowHTMLElement(e);
+            //     // console.log('ele');
+            // })
+
+            // actions btn_table_edit
+            // habilita el boton:
+
             // Accedo a mi base de datos de control de cambios:
             let snapshot = generalRowState.snapshot;
 
@@ -354,12 +388,68 @@ class CustomController {
 
                 // Comparar estados:
                 if (snapshot[key] === e.target.innerText) {
-                    console.log('El contenido de la fila regreso al estado original');
+
                     cellEdit.removeAttribute('style');
                 }
             }
+        });
+
+        // Habilita el modo: edicion
+        this.TBODY.addEventListener('click', (e) => {
+            e.preventDefault();
+            let edit = e.target.tagName;
+
+
+            //snapshot: Estado antes de modificar la fila:
+            if (edit === "BUTTON" || edit === "I") {
+                console.log({ ee: edit, values: originalStateRow });
+                return;
+            }
+            
+            originalStateRow = extractRowData(getRowHTMLElement(e));
+
+            // Si ya existe la base de datos solo agrega otro elemento a la pila (Singleton pattern)
+            if (!generalRowState['snapshot']) {
+                generalRowState['snapshot'] = originalStateRow;
+                generalRowState['changesDetected'] = edicionObject;
+                return;
+            }
+            // agrega elemento a la pila
+
+
+            // Estilos
+            e.target.parentElement.style.transition = "5s";
+            e.target.parentElement.style.backgroundColor = "yellow";
+            e.target.parentElement.style.height = "200px";
+            let children = e.target.parentElement.children;
+
+            for (let child of e.target.parentElement.children) {
+
+                if (child.getAttribute('name') === "id" || child.getAttribute('name') === "btn_edit") {
+                    child.setAttribute("contenteditable", false);
+                    continue;
+                }
+
+                // if (child.getAttribute('name') === "btn_edit") {
+                //     child.setAttribute("contenteditable", false);
+                //     continue;
+                // }
+                child.setAttribute("contenteditable", true);
+            }
+
+            // Accedo a mi base de datos de control de cambios:
+            let snapshot = generalRowState.snapshot;
+
+            editableElementRow = getRowHTMLElement(e);
+            let rowProductHTML = extractRowData(getRowHTMLElement(e));
+
 
         });
+
+        // Registra los items en un array los que cambien de estado a: 'modo_edicion'.
+        // Si le ponen cancelar pedir confirmacion y regresar el item al estado anterior.
+        // Si el array tiene cambios e intentan cambiar de pagina pedir confirmacion.
+
     }
 
     // Podria recibir un trozo de colecion de productos y en base a eso contruir la logica y estructura:
@@ -369,16 +459,10 @@ class CustomController {
         // Pregunta si la tabla tiene hijos, si no tiene hijos saltate la condicion
         // cargar spinner:
 
-        // Tiene datos la tabla
-        if (this.TBODY.hasChildNodes) {
-            this.clearTable();
-        }
-
-        // console.log(chunckData);
         let rowsProducts = "";
 
         function createHeaders() {
-            console.log('Feature not supported yet');
+
         }
 
         let createRows = (product) => {
@@ -386,13 +470,21 @@ class CustomController {
             // for (let key of Object.keys(product)) {
             for (let key of this.HEADERS) {
                 if (key === "id") {
-                    row += `<td contenteditable="false" name="${key}">${product[key]}</td>`;
+                    row += `<td name="${key}">${product[key]}</td>`;
                 } else {
-                    row += `<td contenteditable="true" name="${key}">${product[key]}</td>`;
+                    row += `<td name="${key}">${product[key]}</td>`;
                 }
             }
+
+            // Permisos:
+            row += `<td colspan="2" name="actions" class="actions">
+            <i class="glyphicon glyphicon-menu-down custom"></>
+            </td>`;
             return row;
         }
+
+        // Al dar doble click habilitar la edicion el item y cambiar el color del componente. Al detectar algun cambio renderizar el boton
+        // de actualizar.
 
         // Crea todas las filas de productos
         // Renderiza 10 (test) Aqui va a ir el archivo de opeciones de renderizado:
@@ -401,11 +493,12 @@ class CustomController {
         let dataIterable = chunckData && chunckData != undefined ? chunckData : targetItems;
 
         for (let product of dataIterable) {
-            rowsProducts += `<tr item=${product.id}>${createRows(product)}</tr>`
+            rowsProducts += `<tr classitem=${product.id}>${createRows(product)}</tr>`
         }
 
         // Renderizar filas: Esta responsabilidad tiene que ir encapsulada en otra funcion:
-        this.TBODY.innerHTML += rowsProducts;
+        // this.TBODY.innerHTML += rowsProducts;
+
         return;
     }
 
@@ -416,70 +509,16 @@ class CustomController {
         this.chunckArray(items, metadata);
     }
 
-    clearTable() {
-        // let it = this.TBODY.childNodes.values();
-        // console.log(it.next());
 
-        // do {
-        // it.next();
-        // } while (!it.next().done);
 
-        for (let node of this.TBODY.children) {
-            // console.log(node);
-        }
+}
 
-        // setTimeout(() => {
-        //     this.showEmptyDataMessage();
-        // }, 5000);
-    }
+function registryEvento() {
 
-    // Genera una estructura HTML
-    buildPage(pageToRender) {
-        let rowsProducts = undefined;
-        const { items } = pageToRender;
-        let createRows = (items) => {
-            let row = "";
-            // for (let key of Object.keys(product)) {
-            for (let key of this.HEADERS) {
-                if (key === "id") {
-                    row += `<td contenteditable="false" name="${key}">${items[key]}</td>`;
-                } else {
-                    row += `<td contenteditable="true" name="${key}">${items[key]}</td>`;
-                }
-            }
-            return row;
-        }
-
-        // Crea todas las filas de productos
-        // Renderiza 10 (test) Aqui va a ir el archivo de opeciones de renderizado:
-        let targetItems = items;
-        let dataIterable = targetItems;
-
-        for (let product of dataIterable) {
-            rowsProducts += `<tr item=${product.id}>${createRows(product)}</tr>`
-        }
-
-        this.TBODY.innerHTML = rowsProducts;
-    }
-
-    //Renderiza la pagina en una tabla
-    renderPage() {
-        console.log('proceso: renderizado de pagina');
-        console.log('step1: empezando la renderizacion de pagina.');
-
-        let pageToRender = this.dispatchPage(2);
-        this.buildPage(pageToRender);
-        // this.addBehaviorPage();
-
-        // prepara estructura
-        // Agrega escuchas
-        // confirma que salio todo con exitos
-        // exito ? elimina los escuchas de la pagina a eliminar y elimina la tabla renderizada actualmente
-        // renderiza la estructura logica previamente preparada
-
-    }
 }
 
 // Inyeccion de dependencias para acceder a la data de la app
-let repository = new ProductRepository();
-let ctrl = new CustomController(repository);
+// let repository = new ProductRepository();
+// let ctrl = new CustomController(repository);
+
+export { CustomController };

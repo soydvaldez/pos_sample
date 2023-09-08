@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 // Otra regla: Si el numero de total de items dividido entre el limit es menor a 1 entonces
 // solo abra una pagina en la coleccion

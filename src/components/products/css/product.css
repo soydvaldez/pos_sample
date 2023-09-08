@@ -16,13 +16,12 @@ body {
 
 header {
     width: 100%;
-    height: 100px;
+    margin-bottom: 10px;
 }
 
 /* Header content */
 nav {
     width: 100%;
-    height: inherit;
     margin: 0 auto;
     text-align: center;
     /* border: 1px solid #04AA6D; */
@@ -55,6 +54,8 @@ section {
 }
 
 .options-container {
+    /* position: absolute; */
+
     display: grid;
     width: 100%;
     border: 1px solid #ccc;
@@ -64,10 +65,14 @@ section {
 
 /* Botones para edicion de productos */
 .options-container button {
+    /* position: relative; */
+    top: 10px;
+    z-index: 1;
     color: white;
     font-size: 1.6rem;
     font-family: 'Courier New', Courier, monospace;
-    width: 20%;
+    width: 10%;
+    min-width: 120px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #04AA6D;
@@ -89,7 +94,8 @@ section {
 }
 
 .container_products-table {
-    width: 70%;
+    margin-top: 210px;
+    width: 90%;
     min-width: 550px;
     margin: 0 auto;
     border: 1px solid #ccc;
@@ -98,13 +104,14 @@ section {
 }
 
 table {
+    margin-top: 210px;
     width: 95%;
     min-width: 450px;
-    min-height: 350px;
+    height: 100px;
+    min-height: 100px;
     margin: 15px auto;
     font-size: 1.6rem;
     border-radius: 5px;
-    height: 640px;
 }
 
 thead {
@@ -112,7 +119,7 @@ thead {
 }
 
 tbody {
-    text-align: justify;
+    text-align: center;
 }
 
 table th {
@@ -230,4 +237,12 @@ table td {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* Icono para colapse collapse*/
+.custom {
+    position: static;
+    display: block;
+    width: 20%;
+    margin: 0 auto;
 }
