@@ -71,10 +71,9 @@ class CustomController {
             alert('Evento hola mundo catched!');
         });
 
-        this.TABLE.addEventListener('click', (e) => {
-
-            e.target.dispatchEvent(new CustomEvent('render', { bubbles: true }));
-        });
+        // this.TABLE.addEventListener('click', (e) => {
+        //     e.target.dispatchEvent(new CustomEvent('render', { bubbles: true }));
+        // });
 
         document.addEventListener('render', (e) => {
 
@@ -397,6 +396,11 @@ class CustomController {
         // Habilita el modo: edicion
         this.TBODY.addEventListener('click', (e) => {
             e.preventDefault();
+            let className = e.target.parentElement.getAttribute('class');
+            if (className === "form-detail-product__footer") {
+                return;
+            }
+
             let edit = e.target.tagName;
 
 
@@ -405,7 +409,7 @@ class CustomController {
                 console.log({ ee: edit, values: originalStateRow });
                 return;
             }
-            
+
             originalStateRow = extractRowData(getRowHTMLElement(e));
 
             // Si ya existe la base de datos solo agrega otro elemento a la pila (Singleton pattern)
@@ -442,8 +446,6 @@ class CustomController {
 
             editableElementRow = getRowHTMLElement(e);
             let rowProductHTML = extractRowData(getRowHTMLElement(e));
-
-
         });
 
         // Registra los items en un array los que cambien de estado a: 'modo_edicion'.

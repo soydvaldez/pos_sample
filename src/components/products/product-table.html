@@ -9,14 +9,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="module" src="./js/views/index.js" defer></script>
-    <!-- <script type="module" src="./js/views/product.controller.js" defer></script>
-        <script type="module" src="./js/views/paginator.controller.js" defer></script> -->
+    <!-- <script type="module" src="./js/views/index.js" defer></script> -->
+    <!-- <script type="module" src="./js/views/product.controller.js" defer></script> -->
+    <!-- <script type="module" src="./js/views/paginator.controller.js" defer></script> -->
     <link rel="stylesheet" href="./css/product.css">
 </head>
 
 <body>
-    <header>
+    <header style="position: sticky; top: 0px;">
         <nav>
             <ul>
                 <li><a href="#">Products</a></li>
@@ -24,16 +24,59 @@
             </ul>
         </nav>
     </header>
+    <section style="height: 400px; width: 100%;">
+        <div style="width: 80%; margin: 0 auto; text-align: center;">
+            <h3>Funko Pop Tienda</h3>
+            <figure>
+                <img height="350px" style="border: 1px solid #ccc; border-radius: 5px;"
+                    src="../../../public/thanos-6061143_640-removebg-preview.png" alt="">
+            </figure>
+        </div>
+    </section>
     <section>
         <!-- Notificacion de guardado -->
         <!-- position: sticky top: 20px -->
         <!-- <div class="notification">
             <span>Se ha guardado el elemento</span>
         </div> -->
-        <div class="options-container">
+        <!-- <div class="options-container">
             <button class="btn-save">Actualizar</button>
-        </div>
+        </div> -->
         <div class="container_products-table">
+            <div style="background-color: black; opacity: .8; text-align: center; ">
+                <span style="font-family: 'Courier New', Courier, monospace ;color:white; font-size: 2.4rem;">
+                    Detalle del Producto
+                </span>
+            </div>
+            <div style="border: 1px solid #ccc; width: 100%;">
+                <form class="form-details" style="border: 1px solid #ccc; width: 99%; height: 90%; margin: 5px  auto;">
+                    <div class="form-detail-product__img" style="text-align: center;">
+                        <img height="300px" src="../../../public/funko-pop-5979786_640-removebg-preview.png">
+                    </div>
+                    <div class="form-detail-product">
+                        <label for="nombre">
+                            <span>Nombre</span>
+                            <input type="text" name="nombre" id="nombre" />
+                        </label>
+                        <label for="precio">
+                            <span>precio</span>
+                            <input type="text" name="precio" id="precio" />
+                        </label>
+                        <label for="stock">
+                            <span>Stock</span>
+                            <input type="number" name="stock" id="stock" min="0" />
+                        </label>
+                        <label for="descripcion">
+                            <span>Descripcion:</span>
+                            <textarea name="descripcion" id="descripcion" cols="50" rows="7"></textarea>
+                        </label>
+                        <div class="form-detail-product__footer">
+                            <input type="submit" value="Actualizar">
+                            <button>Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <table>
                 <thead style="position: sticky; top: 0px;">
                     <tr>
@@ -46,52 +89,30 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr classitem="1" style="border: none;" target="">
-                        <td name="id">1</td>
-                        <td name="nombre">Funko Pop Tony Stark</td>
+                    <tr classitem="1">
+                        <td name=" id">1</td>
+                        <td name="nombre">Funko Pop - Tony Stark</td>
                         <td name="descripcion">Figura coleccionable de 15 cm</td>
                         <td name="precio">300</td>
                         <td name="stock">20</td>
-                        <td colspan="1" name="editar" class="editar">
+                        <td class="simulate-action" name="actions">
                             <i class="glyphicon glyphicon-menu-down custom"></i>
                         </td>
                     </tr>
-                    <tr class="ironman" classitem="2" style="border: none;">
-                        <td colspan="6">
-                            <form class="form-details">
-                                <div class="form-detail-product__img" style="text-align: center;">
-                                    <img src="../../../public/images-removebg-preview.png" alt="">
-                                </div>
-                                <div class="form-detail-product">
-                                    <label for="nombre">
-                                        <span>Nombre</span>
-                                        <input type="text" name="nombre" id="nombre" />
-                                    </label>
-                                    <label for="precio">
-                                        <span>precio</span>
-                                        <input type="text" name="precio" id="precio" />
-                                    </label>
-                                    <label for="stock">
-                                        <span>Stock</span>
-                                        <input type="text" name="stock" id="stock" />
-                                    </label>
-                                    <label for="descripcion">
-                                        <span>Descripcion:</span>
-                                        <textarea name="descripcion" id="descripcion" cols="50" rows="7"></textarea>
-                                    </label>
-                                    <div class="form-detail-product__footer">
-                                        <input type="submit" value="Actualizar" />
-                                        <button>Cancelar</button>
-                                    </div>
-                                </div>
-                            </form>
+                    <tr classitem="2">
+                        <td name="id">2</td>
+                        <td name="nombre">Funko Pop - Rocket</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">550</td>
+                        <td name="stock">10</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
                         </td>
                     </tr>
-
-                    <tr classitem="2" style="border: none;">
-                        <td name="id">2</td>
-                        <td name="nombre">Funko Pop Tony Stark</td>
+                    <tr classitem="3">
+                        <td name="id">3</td>
+                        <td name="nombre">Funko Pop - Pantera Negra</td>
                         <td name="descripcion">Figura coleccionable de 15 cm</td>
                         <td name="precio">300</td>
                         <td name="stock">20</td>
@@ -100,9 +121,9 @@
                             </i>
                         </td>
                     </tr>
-                    <tr classitem="2" style="border: none;">
-                        <td name="id">2</td>
-                        <td name="nombre">Funko Pop Tony Stark</td>
+                    <tr classitem="4">
+                        <td name="id">4</td>
+                        <td name="nombre">Funko Pop - Evee</td>
                         <td name="descripcion">Figura coleccionable de 15 cm</td>
                         <td name="precio">300</td>
                         <td name="stock">20</td>
@@ -111,23 +132,12 @@
                             </i>
                         </td>
                     </tr>
-                    <tr classitem="2" style="border: none;">
-                        <td name="id">2</td>
-                        <td name="nombre">Funko Pop Tony Stark</td>
+                    <tr classitem="5">
+                        <td name="id">5</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
                         <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio">300</td>
-                        <td name="stock">20</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr classitem="2" style="border: none;">
-                        <td name="id">2</td>
-                        <td name="nombre">Funko Pop Tony Stark</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio">300</td>
-                        <td name="stock">20</td>
+                        <td name="precio">600</td>
+                        <td name="stock">5</td>
                         <td colspan="2" name="actions" class="actions">
                             <i class="glyphicon glyphicon-menu-down custom">
                             </i>
@@ -159,7 +169,6 @@
             }
 
             .form-details label[for="descripcion"],
-
             textarea {
                 display: inline-block;
                 width: 95%;
@@ -174,11 +183,11 @@
             form input {
                 padding: 10px;
                 border: 1px solid #ccc;
-
             }
 
             .form-details label,
-            input[type="text"] {
+            input[type="text"],
+            input[type="number"] {
                 margin-top: 10px;
                 width: 250px;
             }
@@ -194,10 +203,8 @@
                 display: inline;
                 width: 100%;
                 min-width: 400px;
-                border-left: 1px solid #ccc;
                 padding: 10px;
                 height: inherit;
-                border: 1px solid #ccc;
             }
 
             .form-detail-product__footer {
@@ -228,11 +235,24 @@
             }
 
             .form-detail-product__footer button:hover {
-                opacity: .8;
+                /* opacity: .8; */
             }
 
             .form-detail-product__footer button:active {
-                opacity: .5;
+                /* opacity: .5; */
+            }
+
+            form input[type="submit"] {
+                padding: 10px;
+                cursor: pointer;
+                z-index: 1;
+            }
+
+            form input[type="submit"]:active {
+                padding: 10px;
+                border: 1px solid red;
+                cursor: pointer;
+                z-index: 1;
             }
         </style>
         <div class="paginator">
@@ -254,42 +274,115 @@
         </div>
     </section>
     <script>
-        let getParent = (elementHMTL) => {
-            return elementHMTL.parentNode;
-        }
+        let data_funko = [];
+
+        let selectedRow = undefined;
+        HEADERS = ['id', 'nombre', 'descripcion', 'precio', 'stock'];
+
 
         let TABLE = document.querySelector('table');
         let TBODY = document.querySelector('tbody');
         let trIronman = TBODY.querySelector('.ironman');
 
-        let row5 = document.getElementsByClassName('table-control');
-        // console.log( TBODY.children );
-        console.log(trIronman);
+        // Id del objeto y posicion, al ultimo renderizas el formulario.
+        let form = document.querySelector('.form-details');
+        let div = document.querySelector('.form-detail-product__footer');
+        // let input = div.querySelector('input');
+        // console.log(input);
 
+        // Programacion asyncrona a futuro:
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let data = Object.fromEntries(new FormData(e.target));
+            console.log(data);
+            form.reset();
+        });
 
-        // row.addEventListener('mouseover', (e) => {
-        //     console.log('escuchado');
-        // });
+        TBODY.addEventListener('mouseover', (e) => {
+            let elementHTLM = getElementHTML(e);
+            if (elementHTLM.tagName === "TD") {
+                let row = getParent(elementHTLM);
+                row.setAttribute('class', 'row-style');
+            }
+        });
+
+        TBODY.addEventListener('mouseout', (e) => {
+            let elementHTLM = getElementHTML(e);
+            if (elementHTLM.tagName === "TD") {
+                let row = getParent(elementHTLM);
+                row.removeAttribute('class');
+            }
+        });
+
 
         TBODY.addEventListener('click', (e) => {
             // e.stopPropagation();
-            // e.preventDefault();
+            e.preventDefault();
             let elementHTML = e.target;
-            if (elementHTML.tagName === "I") {
-                let tdElement = getParent(elementHTML);
-                let rowElement = getParent(tdElement);
 
-                // Traeme a su hermano
-                // console.log(rowElement);
-                // let ironMan = rowElement;
-                // console.log(ironMan);
+            let tdElement = undefined;
+            let rowElement = undefined;
 
-                rowElement.after(trIronman);
+            // Si haces click sobre TD solo subes un nivel:
+            if (elementHTML.tagName === "I" || elementHTML.tagName === "TD") {
+                if (elementHTML.tagName === "I") {
+                    tdElement = getParent(elementHTML);
+                    rowElement = getParent(tdElement);
+                } else {
+                    rowElement = getParent(elementHTML);
+                }
 
-                // TBODY.appendChild(ironMan);
-                // rowElement.appendChild(ironMan)
+                let data = extractRowData(rowElement);
+                selectedRow = data;
+                inyectDataToForm();
             }
         });
+
+        function getParent(elementHMTL) {
+            return elementHMTL.parentNode;
+        }
+
+        function getElementHTML(e) {
+            return e.target;
+        }
+
+        function extractRowData(row) {
+            //Estado original: Extrae los datos de las celdas de una fila y lo convierte en un objeto
+            let values = row.children;
+            let dataRow = {};
+
+            for (let key of HEADERS) {
+                dataRow[key] = values[key].innerText;
+            }
+            return dataRow;
+        }
+
+        function inyectDataToForm() {
+            if (!selectedRow) {
+                return 'no data available';
+            }
+
+            let editNombre = form['nombre'];
+            let editDescripcion = form['descripcion'];
+            let editPrecio = form['precio'];
+            let editDivisa = form['divisa'];
+            let editStock = form['stock'];
+
+            editNombre.value = selectedRow.nombre;
+            editDescripcion.value = selectedRow.descripcion;
+            editPrecio.value = selectedRow.precio;
+            // editDivisa.value = selectedRow.divisa;
+            editStock.value = selectedRow.stock;
+        }
+
+        function renderizarForm() {
+
+        }
+
+        // let row5 = document.querySelector('.simulate-action');
+        // row5.dispatchEvent(new Event('click', { bubbles: true }));
+
+        // input.dispatchEvent(new Event('submit'));
     </script>
 </body>
 
