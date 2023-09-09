@@ -95,12 +95,12 @@ section {
 }
 
 .container_products-table {
-    margin-top: 210px;
+    margin-top: 200px;
     width: 70%;
     min-width: 550px;
     margin: 0 auto;
+    height: 1000px;
     border: 1px solid #ccc;
-    height: auto;
     overflow: scroll;
 }
 
@@ -121,6 +121,7 @@ thead {
 
 tbody {
     text-align: center;
+    cursor: pointer;
 }
 
 table th {

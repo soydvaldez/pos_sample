@@ -24,13 +24,15 @@
             </ul>
         </nav>
     </header>
-    <section style="height: 400px; width: 100%;">
-        <div style="width: 80%; margin: 0 auto; text-align: center;">
-            <h3>Funko Pop Tienda</h3>
-            <figure>
-                <img height="350px" style="border: 1px solid #ccc; border-radius: 5px;"
-                    src="../../../public/thanos-6061143_640-removebg-preview.png" alt="">
-            </figure>
+    <section style="height: 250px; width: 100%;">
+        <div style="width: 90%; margin: 0 auto; text-align: center;">
+            <h3 style="font-family: 'Courier New', Courier, monospace;">Módulo de Administración</h3>
+        </div>
+        <div style="width:100%; margin: 0 auto; text-align: center;">
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Ventas</button>
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Pedidos</button>
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Registro</button>
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Venta Diaria</button>
         </div>
     </section>
     <section>
@@ -48,32 +50,39 @@
                     Detalle del Producto
                 </span>
             </div>
-            <div style="border: 1px solid #ccc; width: 100%;">
-                <form class="form-details" style="border: 1px solid #ccc; width: 99%; height: 90%; margin: 5px  auto;">
+            <div class="div-container_form">
+                <form class="form-details">
                     <div class="form-detail-product__img" style="text-align: center;">
-                        <img height="300px" src="../../../public/funko-pop-5979786_640-removebg-preview.png">
+                        <img style="height: 300px; cursor: pointer;"
+                            src="../../../public/funko-pop-5979786_640-removebg-preview.png">
                     </div>
                     <div class="form-detail-product">
                         <label for="nombre">
-                            <span>Nombre</span>
-                            <input type="text" name="nombre" id="nombre" />
-                        </label>
-                        <label for="precio">
-                            <span>precio</span>
-                            <input type="text" name="precio" id="precio" />
-                        </label>
-                        <label for="stock">
-                            <span>Stock</span>
-                            <input type="number" name="stock" id="stock" min="0" />
+                            <span>Nombre*</span>
+                            <input type="text" name="nombre" id="nombre" required />
                         </label>
                         <label for="descripcion">
-                            <span>Descripcion:</span>
-                            <textarea name="descripcion" id="descripcion" cols="50" rows="7"></textarea>
+                            <span>Descripcion</span>
+                            <textarea name="descripcion" id="descripcion" cols="50" rows="5"></textarea>
                         </label>
-                        <div class="form-detail-product__footer">
-                            <input type="submit" value="Actualizar">
-                            <button>Cancelar</button>
-                        </div>
+                        <label for="precio">
+                            <span>Precio Venta*</span>
+                            <input type="number" name="precio" id="precio" min="0" max="10000" required />
+                        </label>
+                        <label for="precio">
+                            <span>Precio*</span>
+                            <input type="number" name="precio" id="precio" min="0" max="10000" required />
+                        </label>
+                        <label for="stock">
+                            <span>Stock*</span>
+                            <input type="number" name="stock" id="stock" min="0" required />
+                        </label>
+                    </div>
+                    <div class="form-detail-product__footer">
+                        <input type="submit" value="Actualizar">
+                    </div>
+                    <div class="form-detail-product__footer">
+                        <button type="submit">Limpiar</button>
                     </div>
                 </form>
             </div>
@@ -148,6 +157,11 @@
             </table>
         </div>
         <style>
+            .div-container_form {
+                border: 1px solid #ccc;
+                width: 100%;
+            }
+
             .form-details {
                 display: grid;
                 justify-items: center;
@@ -159,19 +173,29 @@
 
                 /* Desactiva la propiedad que centra los divs */
                 text-align: left;
-                /* width: 100%; */
                 height: 500px;
+
                 border: 1px solid #ccc;
+                width: 99%;
+                height: 100%;
+                margin: 5px auto;
+            }
+
+            form {
+                /* margin-bottom: 1000px; */
             }
 
             form label {
                 margin-left: 20px;
             }
 
-            .form-details label[for="descripcion"],
-            textarea {
+            .form-details label[for="descripcion"] {
                 display: inline-block;
                 width: 95%;
+            }
+
+            textarea {
+                font-weight: normal;
             }
 
             form textarea {
@@ -185,12 +209,24 @@
                 border: 1px solid #ccc;
             }
 
-            .form-details label,
+            .form-details label {
+                margin-top: 10px;
+                width: 200px;
+                font-weight: bolder;
+            }
+
             input[type="text"],
             input[type="number"] {
                 margin-top: 10px;
-                width: 250px;
+                width: 200px;
+                font-weight: normal;
             }
+
+            .form-details label[for="nombre"],
+            input[id="nombre"] {
+                width: 95%;
+            }
+
 
             .form-detail-product__img {
                 min-width: 400px;
@@ -208,51 +244,48 @@
             }
 
             .form-detail-product__footer {
-                height: auto;
-                position: absolute;
-                bottom: 0;
-                left: 0;
+                display: inline;
                 width: 100%;
-
-                display: grid;
-                align-items: center;
-                justify-items: center;
-
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: 1fr;
-                grid-column-gap: 10px;
-                grid-row-gap: 50px;
-
+                min-width: 400px;
+                padding: 10px;
             }
 
-            .form-detail-product__footer input[type="submit"],
-            button {
-                width: 200px;
-                margin: 10px 0 10px 20px;
+            .form-detail-product__footer input[type="submit"] {
+                width: 100%;
                 border: none;
                 border-radius: 5px;
                 padding: 15px;
+                color: white;
+                background-color: black;
+                opacity: .8;
+            }
+
+            .form-detail-product__footer input[type="submit"]:hover {
+                opacity: .7;
+            }
+
+            .form-detail-product__footer input[type="submit"]:active {
+                padding: 15px;
+                opacity: .6;
+                cursor: pointer;
+                z-index: 1;
+            }
+
+            .form-detail-product__footer button {
+                width: 100%;
+                border: none;
+                border-radius: 5px;
+                padding: 15px;
+                color: white;
+                background-color: rgb(218, 61, 87);
             }
 
             .form-detail-product__footer button:hover {
-                /* opacity: .8; */
+                opacity: .7;
             }
 
             .form-detail-product__footer button:active {
-                /* opacity: .5; */
-            }
-
-            form input[type="submit"] {
-                padding: 10px;
-                cursor: pointer;
-                z-index: 1;
-            }
-
-            form input[type="submit"]:active {
-                padding: 10px;
-                border: 1px solid red;
-                cursor: pointer;
-                z-index: 1;
+                opacity: .5;
             }
         </style>
         <div class="paginator">
