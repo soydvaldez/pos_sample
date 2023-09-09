@@ -16,6 +16,12 @@
 </head>
 
 <body>
+    <div id="msg_notification" class="notification_hidden">
+        <span>¡Producto Actualizado con Exito!</span>
+        <div>
+            <i>x</i>
+        </div>
+    </div>
     <header style="position: sticky; top: 0px;">
         <nav>
             <ul>
@@ -38,9 +44,6 @@
     <section>
         <!-- Notificacion de guardado -->
         <!-- position: sticky top: 20px -->
-        <!-- <div class="notification">
-            <span>Se ha guardado el elemento</span>
-        </div> -->
         <!-- <div class="options-container">
             <button class="btn-save">Actualizar</button>
         </div> -->
@@ -65,9 +68,10 @@
                             <span>Descripcion</span>
                             <textarea name="descripcion" id="descripcion" cols="50" rows="5"></textarea>
                         </label>
-                        <label for="precio">
+                        <label for="precio_venta">
                             <span>Precio Venta*</span>
-                            <input type="number" name="precio" id="precio" min="0" max="10000" required />
+                            <input type="number" name="precio_venta" id="precio_venta" min="0" max="10000" required
+                                value="210" />
                         </label>
                         <label for="precio">
                             <span>Precio*</span>
@@ -82,7 +86,7 @@
                         <input type="submit" value="Actualizar">
                     </div>
                     <div class="form-detail-product__footer">
-                        <button type="submit">Limpiar</button>
+                        <!-- <button>Limpiar</button> -->
                     </div>
                 </form>
             </div>
@@ -320,15 +324,66 @@
         // Id del objeto y posicion, al ultimo renderizas el formulario.
         let form = document.querySelector('.form-details');
         let div = document.querySelector('.form-detail-product__footer');
-        // let input = div.querySelector('input');
-        // console.log(input);
+
+        let handlerNotification = () => {
+            let activate = false;
+            let msg_notification = document.getElementById('msg_notification');
+            let icon = document.querySelector('.notification_hidden div i');
+
+            return {
+                // Establece un escucha
+                listenersNotification() {
+                    icon.addEventListener('click', (e) => {
+                        // Si despues de 15 segundo sigue renderizado el componente borralo:
+
+                        this.renderMessageUpdated();
+                        // msg_notification.setAttribute('class', 'notification_hidden');
+                    });
+                },
+                renderMessageUpdated() {
+                    activate = !activate;
+                    if (activate) {
+                        msg_notification.setAttribute('class', 'notification_display');
+                        return;
+                    } else {
+                        msg_notification.setAttribute('class', 'notification_hidden');
+                        return
+                    }
+                }
+            }
+        }
+
+        // Manejador de eventos:
+        let handler = handlerNotification();
+        handler.listenersNotification();
 
         // Programacion asyncrona a futuro:
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             let data = Object.fromEntries(new FormData(e.target));
             console.log(data);
-            form.reset();
+            handler.renderMessageUpdated();
+            // form.reset();
+            let inputNombre = e.target['nombre'];
+            let inputDescripcion = e.target['descripcion'];
+            let inputPrecio = e.target['precio'];
+            let inputPrecioVenta = e.target['precio_venta'];
+            let inputStock = e.target['stock'];
+
+
+            inputNombre.style.border = "2px solid blue";
+            inputDescripcion.style.border = "2px solid blue";
+            inputPrecio.style.border = "2px solid blue";
+            inputPrecioVenta.style.border = "2px solid blue";
+            inputStock.style.border = "2px solid blue";
+
+            setTimeout(() => {
+                inputNombre.style.border = "1px solid #ccc";
+                inputDescripcion.style.border = "1px solid #ccc";
+                inputPrecio.style.border = "1px solid #ccc";
+                inputPrecioVenta.style.border = "1px solid #ccc";
+                inputStock.style.border = "1px solid #ccc";
+            }, 5000);
         });
 
         TBODY.addEventListener('mouseover', (e) => {
@@ -408,9 +463,7 @@
             editStock.value = selectedRow.stock;
         }
 
-        function renderizarForm() {
 
-        }
 
         // let row5 = document.querySelector('.simulate-action');
         // row5.dispatchEvent(new Event('click', { bubbles: true }));
