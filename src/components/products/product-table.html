@@ -35,9 +35,10 @@
             <h3 style="font-family: 'Courier New', Courier, monospace;">Módulo de Administración</h3>
         </div>
         <div style="width:100%; margin: 0 auto; text-align: center;">
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Realizar Venta</button>
             <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Ventas</button>
             <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Pedidos</button>
-            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Registro</button>
+            <!-- <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Registro</button> -->
             <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Venta Diaria</button>
         </div>
     </section>
@@ -48,34 +49,45 @@
             <button class="btn-save">Actualizar</button>
         </div> -->
         <div class="container_products-table">
-            <div style="background-color: black; opacity: .8; text-align: center; ">
+            <div style="background-color: black; opacity: .8; text-align: center; position: sticky; top: 0">
                 <span style="font-family: 'Courier New', Courier, monospace ;color:white; font-size: 2.4rem;">
                     Detalle del Producto
                 </span>
             </div>
-            <div class="div-container_form">
-                <form class="form-details">
+            <div class="form_div-container">
+                <form class="form_products">
                     <div class="form-detail-product__img" style="text-align: center;">
                         <img style="height: 300px; cursor: pointer;"
                             src="../../../public/funko-pop-5979786_640-removebg-preview.png">
                     </div>
                     <div class="form-detail-product">
-                        <label for="nombre">
-                            <span>Nombre*</span>
-                            <input type="text" name="nombre" id="nombre" required />
-                        </label>
+                        <div class="form-control">
+                            <label for="nombre">
+                                <span>Nombre*</span>
+                                <input type="text" name="nombre" id="nombre" required />
+                            </label>
+                        </div>
                         <label for="descripcion">
                             <span>Descripcion</span>
                             <textarea name="descripcion" id="descripcion" cols="50" rows="5"></textarea>
                         </label>
+
+                        <label for="precio">
+                            <span>Precio Compra*</span>
+                            <input type="number" name="precio" id="precio" min="0" max="10000" required />
+                        </label>
+                        <div class="form-control">
+                            <label for="categoria">
+                                <span>categoria</span>
+                                <input type="number" name="precio" id="precio" min="0" max="10000" required />
+                            </label>
+                        </div>
+
+                        <!-- Sera calculado al vuelo -->
                         <label for="precio_venta">
                             <span>Precio Venta*</span>
                             <input type="number" name="precio_venta" id="precio_venta" min="0" max="10000" required
                                 value="210" />
-                        </label>
-                        <label for="precio">
-                            <span>Precio*</span>
-                            <input type="number" name="precio" id="precio" min="0" max="10000" required />
                         </label>
                         <label for="stock">
                             <span>Stock*</span>
@@ -156,41 +168,141 @@
                             </i>
                         </td>
                     </tr>
+                    <tr classitem="6">
+                        <td name="id">6</td>
+                        <td name="nombre">Funko Pop - Evee</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">300</td>
+                        <td name="stock">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="7">
+                        <td name="id">7</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">600</td>
+                        <td name="stock">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="8">
+                        <td name="id">8</td>
+                        <td name="nombre">Funko Pop - Evee</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">300</td>
+                        <td name="stock">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="9">
+                        <td name="id">9</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">600</td>
+                        <td name="stock">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="10">
+                        <td name="id">10</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">600</td>
+                        <td name="stock">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="11">
+                        <td name="id">11</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">600</td>
+                        <td name="stock">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="12">
+                        <td name="id">12</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">600</td>
+                        <td name="stock">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="13">
+                        <td name="id">13</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">600</td>
+                        <td name="stock">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="14">
+                        <td name="id">14</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">600</td>
+                        <td name="stock">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="15">
+                        <td name="id">15</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio">600</td>
+                        <td name="stock">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
 
                 </tbody>
             </table>
         </div>
         <style>
-            .div-container_form {
-                border: 1px solid #ccc;
+            .form_div-container {
                 width: 100%;
             }
 
-            .form-details {
+            .form_products {
                 display: grid;
                 justify-items: center;
 
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: 1fr;
                 grid-column-gap: 10px;
-                grid-row-gap: 50px;
+                grid-row-gap: 1px;
 
                 /* Desactiva la propiedad que centra los divs */
                 text-align: left;
                 height: 500px;
 
-                border: 1px solid #ccc;
                 width: 99%;
                 height: 100%;
                 margin: 5px auto;
-            }
-
-            form {
-                /* margin-bottom: 1000px; */
-            }
-
-            form label {
-                margin-left: 20px;
             }
 
             .form-details label[for="descripcion"] {
@@ -210,7 +322,6 @@
 
             form input {
                 padding: 10px;
-                border: 1px solid #ccc;
             }
 
             .form-details label {
@@ -235,23 +346,31 @@
             .form-detail-product__img {
                 min-width: 400px;
                 width: 100%;
-
+                overflow: scroll;
+                border: 1px solid #ccc;
             }
 
             .form-detail-product {
-                position: relative;
                 display: inline;
                 width: 100%;
                 min-width: 400px;
                 padding: 10px;
-                height: inherit;
+                height: 560px;
+                overflow: scroll;
+                border: 1px solid #ccc;
+            }
+
+            .form-detail-product span {
+                font-family: 1.6rem;
+                font-weight: bold;
+                width: 100%;
             }
 
             .form-detail-product__footer {
-                display: inline;
                 width: 100%;
                 min-width: 400px;
                 padding: 10px;
+                border: 1px solid #ccc;
             }
 
             .form-detail-product__footer input[type="submit"] {
@@ -322,7 +441,7 @@
         let trIronman = TBODY.querySelector('.ironman');
 
         // Id del objeto y posicion, al ultimo renderizas el formulario.
-        let form = document.querySelector('.form-details');
+        let form = document.querySelector('.form_products');
         let div = document.querySelector('.form-detail-product__footer');
 
         let handlerNotification = () => {

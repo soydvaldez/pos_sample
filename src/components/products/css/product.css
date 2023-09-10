@@ -96,7 +96,7 @@ section {
 
 .container_products-table {
     margin-top: 200px;
-    width: 70%;
+    width: 90%;
     min-width: 550px;
     margin: 0 auto;
     height: 1000px;
@@ -142,12 +142,15 @@ table td {
 }
 
 .row-style {
-    background-color: yellow;
+    background-color: #f3f3f3;
+    color: black;
+    opacity: 1;
 }
 
 .row-style:active {
-    background-color: yellow;
-    opacity: .8;
+    background-color: #f3f3f3;
+    color: black;
+    opacity: .7;
 }
 
 .wrapper-paginator {
