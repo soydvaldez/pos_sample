@@ -1,0 +1,181 @@
+header {
+    position: sticky;
+    top: 0px;
+}
+
+main section {}
+
+main .container_products-table {
+    height: 90vh;
+}
+
+.title-header {
+    background-color: black;
+    opacity: .8;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+.title-header span {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-size: 2.4rem;
+}
+
+.section_main_modules_app {
+    height: 50px;
+    width: 100%;
+}
+
+.section_main_modules_app div {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section_main_modules_app h3 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.form-detail-product__img {
+    min-width: 400px;
+    width: 100%;
+    overflow: scroll;
+    border: 1px solid #ccc;
+}
+
+.form_div-container {
+    width: 100%;
+    min-width: 550px;
+}
+
+.form_products {
+    min-width: 550px;
+    /* display: grid; */
+    /* justify-items: center; */
+
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* grid-template-rows: 1fr; */
+    /* grid-column-gap: 10px; */
+    /* grid-row-gap: 1px; */
+
+    /* Desactiva la propiedad que centra los divs */
+    width: 90%;
+    height: 100%;
+    margin: 5px auto;
+    padding: 10px;
+
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+/* Detalles del producto y labels e inputs del formulario */
+.form-detail-product {
+    min-width: 550px;
+    max-width: 900px;
+    width: 100%;
+    min-width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    height: auto;
+    margin: 0 auto;
+}
+
+.form-detail-product label {
+    display: inline-block;
+    width: 40%;
+    padding: 10px 20px;
+    font-weight: normal;
+    font-size: 1.6rem;
+}
+
+.form-detail-product label[for="nombre"] {
+    display: inline-block;
+    width: 80%;
+    padding: 10px 20px;
+    font-weight: normal;
+}
+
+.form-detail-product label[for="codigo"] input {
+    display: inline-block;
+    width: 10%;
+    padding: 10px 20px;
+    /* border: 1px solid #ccc; */
+}
+
+.form-detail-product span {
+    width: 100%;
+    /* border: 1px solid #ccc; */
+}
+
+.form-detail-product input {
+    width: 100%;
+    padding: 10px 10px;
+    font-weight: normal;
+    border: 1.5px solid #ccc;
+}
+
+.form-detail-product label[for="descripcion"] {
+    width: 80%;
+    min-width: 300px;
+}
+
+.form-detail-product textarea {
+    resize: none;
+    padding: 10px 10px;
+    font-weight: normal;
+    width: 100%;
+    min-width: 370px;
+    border: 1.5px solid #ccc;
+}
+
+.titulo_form {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.form-detail-product__footer {
+    width: 100%;
+    min-width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.form-detail-product__footer input[type="submit"] {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    color: white;
+    background-color: black;
+    opacity: .8;
+}
+
+.form-detail-product__footer input[type="submit"]:hover {
+    opacity: .7;
+}
+
+.form-detail-product__footer input[type="submit"]:active {
+    padding: 15px;
+    opacity: .6;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-detail-product__footer button {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    color: white;
+    background-color: rgb(218, 61, 87);
+}
+
+.form-detail-product__footer button:hover {
+    opacity: .7;
+}
+
+.form-detail-product__footer button:active {
+    opacity: .5;
+}
