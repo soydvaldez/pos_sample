@@ -1,7 +1,11 @@
 let data_funko = [];
 
 let selectedRow = undefined;
-HEADERS = ['id', 'nombre', 'descripcion', 'precio', 'stock'];
+HEADERS = ['id', 'nombre', 'descripcion', 'precio_compra',
+    'precio_venta', 'cantidad', 'categoria',
+    'subcategoria',
+    'iva',
+    'porcentaje_utilidad', 'codigo_barras'];
 
 let body = document.body;
 let input = body.querySelector('input');
@@ -21,47 +25,13 @@ let code = [];
 let timer = undefined;
 
 
-// editDescripcion.addEventListener('focus', (e) => {
-//     editDescripcion.value = "";
-// });
-
-// document.addEventListener('click', (e) => {
-//     input.value = "";
-//     input.focus();
-// });
-
-body.addEventListener('keydown', (e) => {
-    console.log("target: ", e.key);
-
-    if (e.key === "c" && e.key === "Control") {
-        alert('Hola mundo');
-    }
-});
-
-body.addEventListener('keypress', (e) => {
-    console.log("target: ", e.key);
-
-    if (e.key === "c" && e.key === "Control") {
-        alert('Hola mundo');
-    }
-});
-
-body.addEventListener('click', (e) => {
-    console.log("target: ", e.target);
-});
-
-document.addEventListener('input', (e) => {
-
-
-});
-
 body.addEventListener('input', (e) => {
     //Si existe un timer cancelalo y crea uno nuevo
     if (timer) {
         clearInterval(timer);
     }
 
-    timer = setInterval(() => {
+    timer = setTimeout(() => {
         console.log('leyendo...');
         // Si dejas que concluya el timer emite un evento:
         editDescripcion.dispatchEvent(new CustomEvent("change"));
@@ -71,11 +41,12 @@ body.addEventListener('input', (e) => {
 });
 
 body.addEventListener('change', (e) => {
-    console.log(e.target.value);
     console.log('Termino de leer');
-    editDescripcion.value = "";
+    console.log(e.target.value);
+    editDescripcion.innerText = "";
     editDescripcion.value = e.target.value;
 });
+
 
 
 let handlerAmountTotal = () => { }
@@ -182,6 +153,9 @@ TBODY.addEventListener('click', (e) => {
     }
 });
 
+// Que el contorno de los inputs cambien de color momentanemanete:
+
+
 function getParent(elementHMTL) {
     return elementHMTL.parentNode;
 }
@@ -193,12 +167,15 @@ function getElementHTML(e) {
 function extractRowData(row) {
     //Estado original: Extrae los datos de las celdas de una fila y lo convierte en un objeto
     let values = row.children;
-    let dataRow = {};
+    let selectedRow = {};
 
     for (let key of HEADERS) {
-        dataRow[key] = values[key].innerText;
+        if (!values[key] || !values[key] === undefined) {
+            continue;
+        }
+        selectedRow[key] = values[key].innerText;
     }
-    return dataRow;
+    return selectedRow;
 }
 
 function inyectDataToForm() {
@@ -208,28 +185,64 @@ function inyectDataToForm() {
 
     let editId = form['id'];
     let editNombre = form['nombre'];
+    let editCategoria = form['categoria'];
+    let editSubcategoria = form['subcategoria'];
     let editFechaActualizacion = form['fecha_actualizacion'];
     let editDescripcion = form['descripcion'];
-    let editPrecio = form['precio'];
-    let editDivisa = form['divisa'];
-    let editStock = form['stock'];
+    let editPrecio = form['precio_venta'];
+    // let editDivisa = form['divisa'];
+    let editCantidad = form['cantidad'];
 
     editNombre.value = selectedRow.nombre;
     editDescripcion.value = selectedRow.descripcion;
-    editPrecio.value = selectedRow.precio;
+    editPrecio.value = selectedRow.precio_venta;
     // editDivisa.value = selectedRow.divisa;
-    editStock.value = selectedRow.stock;
+    editCantidad.value = selectedRow.cantidad;
     editFechaActualizacion.value = moment().format('YYYY-MM-DDTHH:mm:ss');
 
     setInterval(() => {
         // Muta el estado cada 1  segundo
         editFechaActualizacion.value = moment().format('YYYY-MM-DDTHH:mm:ss');
     }, 1000);
+
+    editNombre.classList.add('selectedRowItem');
+    editCategoria.classList.add('selectedRowItem');
+    editSubcategoria.classList.add('selectedRowItem');
+    editDescripcion.classList.add('selectedRowItem');
+    editPrecio.classList.add('selectedRowItem');
+    editCantidad.classList.add('selectedRowItem');
+
+    setTimeout(() => {
+        editNombre.classList.remove('selectedRowItem');
+        editCategoria.classList.remove('selectedRowItem');
+        editSubcategoria.classList.remove('selectedRowItem');
+        editDescripcion.classList.remove('selectedRowItem');
+        editPrecio.classList.remove('selectedRowItem');
+        editCantidad.classList.remove('selectedRowItem');
+    }, 3000);
+
 }
 
+function test() {
+    let row5 = document.querySelector('.simulate-action');
+    row5.dispatchEvent(new Event('click', { bubbles: true }));
+}
 
-
-let row5 = document.querySelector('.simulate-action');
-row5.dispatchEvent(new Event('click', { bubbles: true }));
+test();
 
 // input.dispatchEvent(new Event('submit'));
+// Si dan click sobre otra fila quitar el efecto y volver a iniciarlo
+
+
+// Formula para calcular el costo de un producto: CostoTotal/pza * utilidad * IVA
+
+// Calcular el costo por pza
+// 50/40 = 1.25 pza
+
+// Calcular la utilidad por pza
+// 1.25 * 0.5 = 0.625 + 1.25 = 1.875
+// 1.25 * 1.5 = 1.875
+
+// IVA por PZA
+// 1.25 * 0.16 = 0.2
+// Precio de venta = 2.075 o redondealo a 2 pesos

@@ -5,19 +5,33 @@ header {
 
 main section {}
 
-main .container_products-table {
-    height: 90vh;
+main section {
+    display: block;
 }
 
-.title-header {
+main .main__section__container_form_products {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    height: auto;
+}
+
+.main_section_table_products {
+    height: 800px;
+    margin-top: 220px;
+}
+
+.main_form_title-header {
     background-color: black;
     opacity: .8;
     text-align: center;
     position: sticky;
     top: 0;
+    width: 100%;
+    border: 1px solid #ccc;
 }
 
-.title-header span {
+.main_form_title-header span {
     font-family: 'Courier New', Courier, monospace;
     color: white;
     font-size: 2.4rem;
@@ -38,28 +52,38 @@ main .container_products-table {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.form-detail-product__img {
+.main_form_container {
+    display: flex;
+    flex-wrap: wrap;
+
     min-width: 400px;
+    width: auto;
+    margin: 0 auto;
+
+
+    height: 100%;
+    /* border: 1px solid #ccc; */
+}
+
+.main_form_container div {
     width: 100%;
-    overflow: scroll;
     border: 1px solid #ccc;
 }
 
+.main_form_container img {
+    width: 200px;
+}
+
 .form_div-container {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    min-width: 550px;
+    min-width: 650px;
+    margin: 0 auto;
 }
 
 .form_products {
     min-width: 550px;
-    /* display: grid; */
-    /* justify-items: center; */
-
-    /* grid-template-columns: repeat(2, 1fr); */
-    /* grid-template-rows: 1fr; */
-    /* grid-column-gap: 10px; */
-    /* grid-row-gap: 1px; */
-
     /* Desactiva la propiedad que centra los divs */
     width: 90%;
     height: 100%;
@@ -178,4 +202,11 @@ main .container_products-table {
 
 .form-detail-product__footer button:active {
     opacity: .5;
+}
+
+form label .selectedRowItem {
+    border: 1px solid rgb(17, 133, 227);
+    padding: 10.5px;
+    transition: 1s;
+
 }

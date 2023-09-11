@@ -51,7 +51,7 @@ nav ul li a {
 
 section {
     width: 100%;
-    height: 900px;
+    /* height: 900px; */
 }
 
 .options-container {
@@ -104,9 +104,9 @@ section {
     overflow: scroll;
 }
 
-table {
+.main_section_table_products table {
     margin-top: 210px;
-    width: 90%;
+    width: 70%;
     min-width: 450px;
     height: 100px;
     min-height: 100px;
@@ -115,16 +115,16 @@ table {
     border-radius: 5px;
 }
 
-thead {
+.main_section_table_products thead {
     text-align: justify;
 }
 
-tbody {
+.main_section_table_products tbody {
     text-align: center;
     cursor: pointer;
 }
 
-table th {
+.main_section_table_products table th {
     text-align: left;
     background-color: #333;
     color: white;
@@ -132,7 +132,7 @@ table th {
     padding: 15px;
 }
 
-table td {
+.main_section_table_products table td {
     border: 1px solid #ccc;
     height: 50px;
 }
