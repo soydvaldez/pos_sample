@@ -14,6 +14,7 @@ class Product {
 
 class ProductDao {
     URL_SERVER = 'http://localhost:3000';
+    // LOCAL_STORE = '../../../../store/db.json';
     LOCAL_STORE = './js/data/store/db.json';
 
     constructor() {

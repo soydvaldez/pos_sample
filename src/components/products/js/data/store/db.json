@@ -4,8 +4,11 @@
             "id": 1,
             "nombre": "Laptop Alien Ware",
             "descripcion": "",
-            "precio": 300,
+            "precio_venta": 300,
+            "precio_compra": 300,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 20
         },
         {
@@ -14,6 +17,8 @@
             "descripcion": "",
             "precio": 50,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 5
         },
         {
@@ -22,6 +27,8 @@
             "descripcion": "",
             "precio": 500,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 3
         },
         {
@@ -30,6 +37,8 @@
             "descripcion": "",
             "precio": 200,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 5
         },
         {
@@ -38,6 +47,8 @@
             "descripcion": "",
             "precio": 150,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 10
         },
         {
@@ -46,6 +57,8 @@
             "descripcion": "",
             "precio": 500,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 3
         },
         {
@@ -54,6 +67,8 @@
             "descripcion": "",
             "precio": 200,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 5
         },
         {
@@ -62,6 +77,8 @@
             "descripcion": "",
             "precio": 150,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 10
         },
         {
@@ -70,6 +87,8 @@
             "descripcion": "",
             "precio": 500,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 3
         },
         {
@@ -78,6 +97,8 @@
             "descripcion": "",
             "precio": 200,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 5
         },
         {
@@ -86,6 +107,8 @@
             "descripcion": "",
             "precio": 150,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 10
         },
         {
@@ -94,6 +117,8 @@
             "descripcion": "",
             "precio": 500,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 3
         },
         {
@@ -102,6 +127,8 @@
             "descripcion": "",
             "precio": 200,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 5
         },
         {
@@ -110,6 +137,8 @@
             "descripcion": "",
             "precio": 150,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 10
         },
         {
@@ -118,6 +147,8 @@
             "descripcion": "",
             "precio": 150,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 10
         },
         {
@@ -126,6 +157,8 @@
             "descripcion": "",
             "precio": 500,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 3
         },
         {
@@ -134,6 +167,8 @@
             "descripcion": "",
             "precio": 200,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 5
         },
         {
@@ -142,6 +177,8 @@
             "descripcion": "",
             "precio": 150,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 10
         },
         {
@@ -150,6 +187,8 @@
             "descripcion": "",
             "precio": 200,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 5
         },
         {
@@ -158,206 +197,20 @@
             "descripcion": "",
             "precio": 150,
             "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 10
         },
         {
             "id": 21,
             "nombre": "Silla Gamer",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "descripcion": "articulo de prueba para mi tabla",
             "precio": 200,
             "divisa": "$USD",
-            "stock": 5
-        },
-        {
-            "id": 22,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        },
-        {
-            "id": 23,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        },
-        {
-            "id": 24,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        },
-        {
-            "id": 25,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        },
-        {
-            "id": 26,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 27,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 28,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 29,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 30,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 31,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 32,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 33,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 34,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 35,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 36,
-            "nombre": "Silla Gamer",
-            "descripcion": "articulo de prueba para mi tabla",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 37,
-            "nombre": "Silla Gamer",
-            "descripcion": "test added",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 38,
-            "nombre": "Silla Gamer",
-            "descripcion": "test added",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 39,
-            "nombre": "Silla Gamer",
-            "descripcion": "test added",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 40,
-            "nombre": "Silla Gamer",
-            "descripcion": "test added",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 41,
-            "nombre": "Silla Gamer",
-            "descripcion": "test added",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 42,
-            "nombre": "Silla Gamer",
-            "descripcion": "test added",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 43,
-            "nombre": "Silla Gamer",
-            "descripcion": "test added",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 44,
-            "nombre": "Silla Gamer",
-            "descripcion": "test added",
-            "precio": 200,
-            "divisa": "$USD",
-            "stock": 5
-        }
-        ,{
-            "id": 45,
-            "nombre": "Silla Gamer",
-            "descripcion": "test added",
-            "precio": 200,
-            "divisa": "$USD",
+            "creationDate": "2020-10-01T14:05:07",
+            "published_at": "2020-10-01T14:05:07",
             "stock": 5
         }
     ],

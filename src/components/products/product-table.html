@@ -5,26 +5,238 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/product.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="module" src="./js/views/product.controller.js" defer></script>
-    <script type="module" src="./js/views/paginator.controller.js" defer></script>
+
+    <!-- <script type="module" src="./js/views/index.js" defer></script> -->
+    <!-- <script type="module" src="./js/views/product.controller.js" defer></script> -->
+    <!-- <script type="module" src="./js/views/paginator.controller.js" defer></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <link rel="stylesheet" href="./css/product.css">
+    <link rel="stylesheet" href="./tmp/index.css">
+    <script src="./tmp/index.js" defer></script>
 </head>
 
 <body>
-    <h1>Products</h1>
-    <section>
-        <!-- Notificacion de guardado -->
-        <!-- position: sticky top: 20px -->
-        <!-- <div class="notification">
-            <span>Se ha guardado el elemento</span>
-        </div> -->
-        <div class="options-container">
-            <button class="btn-save" disabled>Guardar</button>
+    <header>
+        <div id="msg_notification" class="notification_hidden">
+            <span>¡Producto Actualizado con Exito!</span>
+            <div>
+                <i>x</i>
+            </div>
         </div>
-        <div class="container_products-table">
+        <nav>
+            <ul>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Registrar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section_main_modules_app">
+            <div>
+                <h3>Módulo de Administración</h3>
+            </div>
+            <!-- <div style="width:100%; margin: 0 auto; text-align: center;">
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Realizar Venta</button>
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Ventas</button>
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Pedidos</button>
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Registro</button>
+            <button style="height: 150px; width: 20.3%; border: 1px solid #ccc;">Venta Diaria</button>
+        </div> -->
+            <!-- <div class="options-container">
+            <button class="btn-save">Actualizar</button>
+        </div> -->
+        </section>
+        <section class="main__section_form_products">
+            <div class="main__section__container_form_products">
+                <!-- <div class="form_div-container">
+                    <div>
+                    <div>
+                        <h1>sss</h1>
+                    </div>
+                </div>  -->
+                <form class="form_products">
+                    <div class="form-detail-product">
+                        <div class="main_form_title-header">
+                            <span>
+                                Actualizacion de Producto
+                            </span>
+                        </div>
+                        <div>
+                            <img style="width: 20%;" src="../../../public/funko-pop-5979786_640-removebg-preview.png">
+                        </div>
+                        <div class="titulo_form">
+                            <span>Datos Generales del Producto</span>
+                        </div>
+                        <label for="id">
+                            <span>Id</span>
+                            <input type="text" name="id" id="id" value="1" disabled />
+                        </label>
+                        <label for="fecha_actualizacion">
+                            <span>Fecha de Actualizacion</span>
+                            <input type="datetime-local" name="fecha_actualizacion" id="fecha_actualizacion" disabled>
+                        </label>
+                        <label for="codigo_barras">
+                            <span>Codigo Barras</span>
+                            <input type="text" name="codigo_barras" id="codigo_barras" placeholder="1" value="7506250912405
+                                " disabled />
+                        </label>
+                        <label for="nombre">
+                            <span>Nombre*</span>
+                            <input type="text" name="nombre" id="nombre" placeholder="nombre" required />
+                        </label>
+
+                        <label for="categoria">
+                            <span>Categoria</span>
+                            <input list="browsers" name="categoria" id="categoria" />
+                            <datalist id="browsers" value="Chrome">
+                                <option value="Chrome"></option>
+                                <option value="Firefox"></option>
+                                <option value="Internet Explorer"></option>
+                                <option value="Opera"></option>
+                                <option value="Safari"></option>
+                                <option value="Microsoft Edge"></option>
+                            </datalist>
+                        </label>
+
+                        <label for="subcategoria">
+                            <span>Subcategoria</span>
+                            <input type="number" name="subcategoria" id="subcategoria" min="0" max="10000" required />
+                        </label>
+
+                        <label for="descripcion">
+                            <span>Descripcion</span>
+                            <textarea name="descripcion" id="descripcion" cols="60" rows="5"></textarea>
+                        </label>
+
+                        <div class="titulo_form">
+                            <span>Desglose de Impuesto y Costos</span>
+                        </div>
+                        <!-- Aqui inyecta los impuestos -->
+                        <label for="iva">
+                            <span>IVA</span>
+                            <input type="text" name="iva" id="iva" min="0" max="10000" value="16%" required disabled />
+                        </label>
+                        <!-- Aqui inyecta los impuestos -->
+                        <label for="porcentaje_utilidad">
+                            <span>Porcentaje de Utilidad</span>
+                            <input type="text" name="porcentaje_utilidad" id="porcentaje_utilidad" min="0" max="10000"
+                                value="50%" required disabled />
+                        </label>
+                        <label for="precio_compra">
+                            <span>Precio Compra*</span>
+                            <input type="number" name="precio_compra" id="precio_compra" min="0" max="10000" required />
+                        </label>
+
+                        <label for="stock">
+                            <span>Cantidads*</span>
+                            <input type="number" name="cantidad" id="cantidad" min="0" required />
+                        </label>
+                        <!-- <div>
+                            <span>Impuesto</span>
+                            <span>IVA</span>
+                            <span>.25</span>
+                        </div> -->
+                        <div class="titulo_form">
+                            <span>Precio de Venta</span>
+                        </div>
+                        <label for="precio_venta">
+                            <span>Precio Venta*</span>
+                            <input type="number" name="precio_venta" id="precio_venta" min="0" max="10000" required />
+                        </label>
+                        <!-- <div class="titulo_form">
+                                <span>Inversion por unidad</span>
+                            </div>
+                            <div class="titulo_form">
+                                <span>Inversion Total</span>
+                            </div>
+                            <div class="titulo_form">
+                                <span>Ganancia por Unidad</span>
+                            </div>
+                            <div class="titulo_form">
+                                <span>Utilidad Total</span>
+                            </div>
+                            <div class="titulo_form">
+                                <span>Ganancia proyectada por Stock</span>
+                            </div> -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Totales</th>
+                                    <th>Cantidades</th>
+                                </tr>
+                                <tr>
+                                    <th>Inversion por unidad</th>
+                                    <td>100.0</td>
+                                </tr>
+                                <tr>
+                                    <th>Inversion Total</th>
+                                    <td>10.0</td>
+                                </tr>
+                                <tr>
+                                    <th>Ganancia por Unidad</th>
+                                    <td>200.0</td>
+                                </tr>
+                                <tr>
+                                    <th>Utilidad Total</th>
+                                    <td>300.0</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Ganancia proyectada por Stock</th>
+                                    <td>200.9</td>
+                                </tr>
+                                <tr>
+                                    <th>Ganancia proyectada por Stock</th>
+                                    <td>200.0</td>
+                                </tr>
+                                <tr>
+                                    <th>subtotal</th>
+                                    <td>900.0</td>
+                                </tr>
+                                <tr>
+                                    <th>total</th>
+                                    <td>900.0</td>
+                                </tr>
+                            </thead>
+                            </tbody>
+                        </table>
+
+                        <style>
+                            .form_div-container table {
+                                border: 1px solid #ccc;
+                                margin: 0 auto;
+                                width: 60%;
+                            }
+
+                            .form_div-container table,
+                            td,
+                            th {
+                                border: 1px solid #ccc;
+                            }
+                        </style>
+                        <!-- <div class="form-control">
+                        </div> -->
+                        <!-- Sera calculado al vuelo -->
+                        <!-- <div class="form-control">
+                        </div>
+                        <div class="form-control">
+                        </div>
+                    </div> -->
+                        <!-- <div class="form-detail-product__footer">
+                        <input type="submit" value="Actualizar">
+                    </div>
+                    <div class="form-detail-product__footer">
+                        <button>Limpiar</button>
+                    </div> -->
+                </form>
+            </div>
+            </div>
+        </section>
+
+        <section class="main_section_table_products">
             <table>
                 <thead style="position: sticky; top: 0px;">
                     <tr>
@@ -32,30 +244,141 @@
                         <th>Nombre</th>
                         <th>Descripcion</th>
                         <th>Precio</th>
-                        <th>Stock</th>
+                        <th>Cantidad</th>
+                        <th style="width: 30px;">Acciones</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <tr classitem="1">
+                        <td name=" id">1</td>
+                        <td name="nombre">Funko Pop - Tony Stark</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td name="actions">
+                            <i class="glyphicon glyphicon-menu-down custom"></i>
+                        </td>
+                    </tr>
+                    <tr classitem="2">
+                        <td class="simulate-action" name="id">2</td>
+                        <td name="nombre">Funko Pop - Rocket</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">550</td>
+                        <td name="cantidad">10</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="3">
+                        <td name="id">3</td>
+                        <td name="nombre">Funko Pop - Pantera Negra</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="4">
+                        <td name="id">4</td>
+                        <td name="nombre">Funko Pop - Evee</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="5">
+                        <td name="id">5</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">600</td>
+                        <td name="cantidad">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="6">
+                        <td name="id">6</td>
+                        <td name="nombre">Funko Pop - Evee</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="7">
+                        <td name="id">7</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">600</td>
+                        <td name="cantidad">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="8">
+                        <td name="id">8</td>
+                        <td name="nombre">Funko Pop - Evee</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="9">
+                        <td name="id">9</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">600</td>
+                        <td name="cantidad">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="10">
+                        <td name="id">10</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">600</td>
+                        <td name="cantidad">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-        </div>
-        <div class="paginator">
-            <div class="wrapper-paginator">
-                <button class="paginator_btn__nextpage glyphicon glyphicon-step-backward" action="step-backward">
-                </button>
-                <button class="paginator_btn__nextpage glyphicon glyphicon-backward" action="backward">
-                </button>
-                <button class="paginator_btn__page glyphicon" action="page1">1</button>
-                <button class="paginator_btn__page glyphicon" action="page2">2</button>
-                <button class="paginator_btn__page glyphicon" action="page3">3</button>
-                <button class="paginator_btn__page glyphicon" action="page4">4</button>
-                <button class="paginator_btn__backpage glyphicon glyphicon-forward" action="forward">
-                    <span class=""></span>
-                </button>
-                <button class="paginator_btn__backpage glyphicon glyphicon-step-forward" action="step-forward">
-                </button>
+            <div class="paginator">
+                <div class="wrapper-paginator">
+                    <button class="paginator_btn__nextpage glyphicon glyphicon-step-backward" action="step-backward">
+                    </button>
+                    <button class="paginator_btn__nextpage glyphicon glyphicon-backward" action="backward">
+                    </button>
+                    <button class="paginator_btn__page glyphicon" action="page1">1</button>
+                    <button class="paginator_btn__page glyphicon" action="page2">2</button>
+                    <button class="paginator_btn__page glyphicon" action="page3">3</button>
+                    <button class="paginator_btn__page glyphicon" action="page4">4</button>
+                    <button class="paginator_btn__backpage glyphicon glyphicon-forward" action="forward">
+                        <span class=""></span>
+                    </button>
+                    <button class="paginator_btn__backpage glyphicon glyphicon-step-forward" action="step-forward">
+                    </button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 </body>
 
 </html>
