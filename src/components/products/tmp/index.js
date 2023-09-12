@@ -1,3 +1,21 @@
+// monitorea al objeto window
+
+window.addEventListener('resize', (e) => {
+    console.log(e.target);
+    let height = window.innerHeight;
+    let width = window.innerWidth;
+
+    console.log(height, width);
+
+    if (width <= 500) {
+        document.body.style.backgroundColor = "yellow";
+    }
+    
+    if (width > 500) {
+        document.body.style.backgroundColor = "rgb(255, 255, 255)";
+    }
+});
+
 let data_funko = [];
 
 let selectedRow = undefined;

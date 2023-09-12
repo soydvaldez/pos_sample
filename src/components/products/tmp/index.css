@@ -1,9 +1,18 @@
 header {
-    position: sticky;
-    top: 0px;
+    min-width: 550px;
+    width: 100%;
+    /* position: sticky; */
+    /* top: 0px; */
+    display: block;
 }
 
-main section {}
+main nav {
+    width: 100%;
+}
+
+main nav ul{
+    width: 100%;
+}
 
 main section {
     display: block;
@@ -18,7 +27,7 @@ main .main__section__container_form_products {
 
 .main_section_table_products {
     height: 800px;
-    margin-top: 220px;
+    margin-top: 10px;
 }
 
 .main_form_title-header {
