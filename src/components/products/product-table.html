@@ -19,13 +19,13 @@
 </head>
 
 <body>
-    <header>
-        <div id="msg_notification" class="notification_hidden">
-            <span>¡Producto Actualizado con Exito!</span>
-            <div>
-                <i>x</i>
-            </div>
+    <div id="msg_notification" class="notification_hidden">
+        <span>¡Producto Actualizado con Exito!</span>
+        <div>
+            <i>x</i>
         </div>
+    </div>
+    <header>
         <nav>
             <ul>
                 <li><a href="#">Products</a></li>
@@ -33,7 +33,172 @@
             </ul>
         </nav>
     </header>
+
     <main>
+        <style>
+            .main_section_buscador {
+                padding-top: 40px;
+                width: 100%;
+                height: 100px;
+            }
+
+            .main_section_buscador input {
+                display: block;
+                width: 70%;
+                min-width: 400px;
+                max-width: 800px;
+                margin: 0 auto;
+                border-radius: 15px;
+                padding: 5px;
+                border: 2px solid #ccc;
+            }
+        </style>
+        <section class="main_section_buscador">
+            <input type="text" placeholder="Buscador...">
+            <span class="glyphicon glyphicon-search"></span>
+        </section>
+        <section class="main_section_table_products">
+            <table>
+                <thead style="position: sticky; top: 0px;">
+                    <tr>
+                        <th>No</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th style="width: 30px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr classitem="1">
+                        <td name=" id">1</td>
+                        <td name="nombre">Funko Pop - Tony Stark</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td name="actions">
+                            <i class="glyphicon glyphicon-menu-down custom"></i>
+                        </td>
+                    </tr>
+                    <tr classitem="2">
+                        <td class="simulate-action" name="id">2</td>
+                        <td name="nombre">Funko Pop - Rocket</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">550</td>
+                        <td name="cantidad">10</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="3">
+                        <td name="id">3</td>
+                        <td name="nombre">Funko Pop - Pantera Negra</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="4">
+                        <td name="id">4</td>
+                        <td name="nombre">Funko Pop - Evee</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="5">
+                        <td name="id">5</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">600</td>
+                        <td name="cantidad">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="6">
+                        <td name="id">6</td>
+                        <td name="nombre">Funko Pop - Evee</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="7">
+                        <td name="id">7</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">600</td>
+                        <td name="cantidad">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="8">
+                        <td name="id">8</td>
+                        <td name="nombre">Funko Pop - Evee</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">300</td>
+                        <td name="cantidad">20</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="9">
+                        <td name="id">9</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">600</td>
+                        <td name="cantidad">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr classitem="10">
+                        <td name="id">10</td>
+                        <td name="nombre">Funko Pop - Capitan America</td>
+                        <td name="descripcion">Figura coleccionable de 15 cm</td>
+                        <td name="precio_venta">600</td>
+                        <td name="cantidad">5</td>
+                        <td colspan="2" name="actions" class="actions">
+                            <i class="glyphicon glyphicon-menu-down custom">
+                            </i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="paginator">
+                <div class="wrapper-paginator">
+                    <button class="paginator_btn__nextpage glyphicon glyphicon-step-backward" action="step-backward">
+                    </button>
+                    <button class="paginator_btn__nextpage glyphicon glyphicon-backward" action="backward">
+                    </button>
+                    <button class="paginator_btn__page glyphicon" action="page1">1</button>
+                    <button class="paginator_btn__page glyphicon" action="page2">2</button>
+                    <button class="paginator_btn__page glyphicon" action="page3">3</button>
+                    <button class="paginator_btn__page glyphicon" action="page4">4</button>
+                    <button class="paginator_btn__backpage glyphicon glyphicon-forward" action="forward">
+                        <span class=""></span>
+                    </button>
+                    <button class="paginator_btn__backpage glyphicon glyphicon-step-forward" action="step-forward">
+                    </button>
+                </div>
+            </div>
+        </section>
         <section class="section_main_modules_app">
             <div>
                 <h3>Módulo de Administración</h3>
@@ -233,149 +398,6 @@
                     </div> -->
                 </form>
             </div>
-            </div>
-        </section>
-
-        <section class="main_section_table_products">
-            <table>
-                <thead style="position: sticky; top: 0px;">
-                    <tr>
-                        <th>No</th>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th style="width: 30px;">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr classitem="1">
-                        <td name=" id">1</td>
-                        <td name="nombre">Funko Pop - Tony Stark</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">300</td>
-                        <td name="cantidad">20</td>
-                        <td name="actions">
-                            <i class="glyphicon glyphicon-menu-down custom"></i>
-                        </td>
-                    </tr>
-                    <tr classitem="2">
-                        <td class="simulate-action" name="id">2</td>
-                        <td name="nombre">Funko Pop - Rocket</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">550</td>
-                        <td name="cantidad">10</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr classitem="3">
-                        <td name="id">3</td>
-                        <td name="nombre">Funko Pop - Pantera Negra</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">300</td>
-                        <td name="cantidad">20</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr classitem="4">
-                        <td name="id">4</td>
-                        <td name="nombre">Funko Pop - Evee</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">300</td>
-                        <td name="cantidad">20</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr classitem="5">
-                        <td name="id">5</td>
-                        <td name="nombre">Funko Pop - Capitan America</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">600</td>
-                        <td name="cantidad">5</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr classitem="6">
-                        <td name="id">6</td>
-                        <td name="nombre">Funko Pop - Evee</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">300</td>
-                        <td name="cantidad">20</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr classitem="7">
-                        <td name="id">7</td>
-                        <td name="nombre">Funko Pop - Capitan America</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">600</td>
-                        <td name="cantidad">5</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr classitem="8">
-                        <td name="id">8</td>
-                        <td name="nombre">Funko Pop - Evee</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">300</td>
-                        <td name="cantidad">20</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr classitem="9">
-                        <td name="id">9</td>
-                        <td name="nombre">Funko Pop - Capitan America</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">600</td>
-                        <td name="cantidad">5</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr classitem="10">
-                        <td name="id">10</td>
-                        <td name="nombre">Funko Pop - Capitan America</td>
-                        <td name="descripcion">Figura coleccionable de 15 cm</td>
-                        <td name="precio_venta">600</td>
-                        <td name="cantidad">5</td>
-                        <td colspan="2" name="actions" class="actions">
-                            <i class="glyphicon glyphicon-menu-down custom">
-                            </i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="paginator">
-                <div class="wrapper-paginator">
-                    <button class="paginator_btn__nextpage glyphicon glyphicon-step-backward" action="step-backward">
-                    </button>
-                    <button class="paginator_btn__nextpage glyphicon glyphicon-backward" action="backward">
-                    </button>
-                    <button class="paginator_btn__page glyphicon" action="page1">1</button>
-                    <button class="paginator_btn__page glyphicon" action="page2">2</button>
-                    <button class="paginator_btn__page glyphicon" action="page3">3</button>
-                    <button class="paginator_btn__page glyphicon" action="page4">4</button>
-                    <button class="paginator_btn__backpage glyphicon glyphicon-forward" action="forward">
-                        <span class=""></span>
-                    </button>
-                    <button class="paginator_btn__backpage glyphicon glyphicon-step-forward" action="step-forward">
-                    </button>
-                </div>
             </div>
         </section>
     </main>
